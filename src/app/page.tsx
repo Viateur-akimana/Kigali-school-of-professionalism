@@ -2,14 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from './layout'
+import heroImage from '../../public/hero-image.png'
+import heroImagePlaceholder from '../../public/image 4.png'
 
 const HomePage: React.FC = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
         <div className="flex flex-col md:flex-row items-center">
-          {/* Left Column */}
           <div className="md:w-1/2">
             <h1 className="text-4xl font-bold mb-4">IT Solution Group Limited</h1>
             <p className="text-lg mb-6">
@@ -20,49 +20,39 @@ const HomePage: React.FC = () => {
               placeholder="Search..."
             />
           </div>
-          {/* Right Column */}
           <div className="md:w-1/2 flex justify-center">
             <Image
-              src="/hero-image.png"
+              src={ heroImage }
               alt="IT Solution Group"
               width={500}
               height={500}
-              blurDataURL="/hero-image-placeholder.png"
               placeholder="blur"
             />
           </div>
         </div>
-
-        {/* Why Choose Section */}
-        <div className="my-8">
+        <div className="my-8"> 
           <h2 className="text-2xl font-bold mb-4">Why choose IT Solution Group?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Certification */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Certification</h3>
               <p>Our team is certified and trained to deliver high-quality solutions.</p>
             </div>
-            {/* Education */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Education</h3>
               <p>We provide educational resources to help you stay up-to-date.</p>
             </div>
-            {/* Experience */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Experience</h3>
               <p>With years of experience, we deliver proven solutions.</p>
             </div>
           </div>
         </div>
-
-        {/* Services Section */}
         <div className="my-8">
           <h2 className="text-2xl font-bold mb-4">Our Services</h2>
           <p className="mb-6">
             We transform businesses through technology. &quot Revolutionize your businesses with our cutting-edge technology solutions. &quot
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Cloud Computing Solutions */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Cloud Computing Solutions</h3>
               <p>
@@ -72,7 +62,6 @@ const HomePage: React.FC = () => {
                 Learn More
               </Link>
             </div>
-            {/* Web Development and UI/UX Design */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Web Development and UI/UX Design</h3>
               <p>
@@ -82,7 +71,6 @@ const HomePage: React.FC = () => {
                 Learn More
               </Link>
             </div>
-            {/* Cybersecurity and Security Training */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Cybersecurity and Security Training</h3>
               <p>
@@ -94,12 +82,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Additional Services */}
         <div className="my-8">
           <h2 className="text-2xl font-bold mb-4">More Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* IoT and AI Management Solutions */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">IoT and AI Management Solutions</h3>
               <p>
@@ -109,7 +94,6 @@ const HomePage: React.FC = () => {
                 Learn More
               </Link>
             </div>
-            {/* Tech Staffing and Contract Creation */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Tech Staffing and Contract Creation</h3>
               <p>
@@ -119,7 +103,6 @@ const HomePage: React.FC = () => {
                 Learn More
               </Link>
             </div>
-            {/* Technology Consulting and Business Solutions */}
             <div className="bg-gray-100 p-4 rounded-md">
               <h3 className="text-lg font-bold">Technology Consulting and Business Solutions</h3>
               <p>
