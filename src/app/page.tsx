@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-1/2">
-          <h1 className="text-4xl text-blue-600 font-bold mb-4">IT Solution Group Limited</h1>
+          <h1 className="text-4xl text-blue-600  font-bold mb-4">IT Solution Group Limited</h1>
           <p className="text-lg mb-6">
             The  IT Solutions Group is leading the charge towards Rwanda's tech-driven future.
             With a steadfast commitment to the transformative power of  technology,
