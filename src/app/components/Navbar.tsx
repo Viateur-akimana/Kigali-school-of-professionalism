@@ -5,40 +5,40 @@ import Image from 'next/image';
 
 const Navbar: React.FC = () => {
     return (
-        <nav className=" bg-blue shadow-md">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
-                    <div className="flex items-center">
-                        <Link href="/" className="text-gray-900 text-xl font-bold">
+        <nav className="shadow-md">
+            <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-24">
+                    <div className="flex mx-auto justify-center">
+                        <Link href="/" className="text-gray-900 font-bold">
                             <Image
-                            src={ image3 }
-                            alt='Logo'
-                            width={160}
-                            height={76}
+                                src={image3}
+                                alt='Logo'
+                                width={120}
+                                height={60}
                             />
                         </Link>
                     </div>
-                    <div className="flex">
-                        <div className="ml-10 flex items-baseline space-x-4">
-                            <Link href="/" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                    <div className="flex mx-auto justify-center ">
+                        <div className="mx-10 flex items-baseline space-x-12">
+                            <Link href="/" className="text-gray-700  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Home
                             </Link>
-                            <Link href="/jobs" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" >
+                            <Link href="/jobs" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
                                 Jobs
                             </Link>
-                            <Link href="/programs" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                            <Link href="/programs" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Programs
                             </Link>
-                            <Link href="/industries" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                            <Link href="/industries" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Industries
                             </Link>
-                            <Link href="/about" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                            <Link href="/about" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 About
                             </Link>
                         </div>
                     </div>
-                    <div className="ml-auto">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <div className="flex mx-auto justify-center">
+                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded">
                             Contact
                         </button>
                     </div>
