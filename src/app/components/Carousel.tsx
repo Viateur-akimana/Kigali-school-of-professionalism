@@ -13,29 +13,54 @@ interface CarouselItem {
 
 const data: CarouselItem[] = [
   {
-    name: `John Morgan`,
-    img: `/students/John_Morgan.jpg`,
-    review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    name: `Mariya Knowless`,
+    img: `../../../public/name.png`,
+    review: `Working with this AI software development and
+    sales team has been a game-changer for our
+    business. Their innovative solutions have
+    significantly  boosted our efficiency and sales
+   
+   `,
   },
   {
-    name: `Ellie Anderson`,
-    img: `/students/Ellie_Anderson.jpg`,
-    review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    name: `Mariya Knowless`,
+    img: `../../../public/name.png`,
+    review: `Working with this AI software development and
+    sales team has been a game-changer for our
+    business. Their innovative solutions have
+    significantly  boosted our efficiency and sales
+   
+   `
   },
   {
-    name: `Nia Adebayo`,
-    img: `/students/Nia_Adebayo.jpg`,
-    review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    name: `Mariya Knowless`,
+    img: `../../../public/name.png`,
+    review: `Working with this AI software development and
+    sales team has been a game-changer for our
+    business. Their innovative solutions have
+    significantly  boosted our efficiency and sales
+   
+   `,
   },
   {
-    name: `Rigo Louie`,
-    img: `/students/Rigo_Louie.jpg`,
-    review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    name: `Mariya Knowless`,
+    img: `../../../public/name.png`,
+    review: `Working with this AI software development and
+    sales team has been a game-changer for our
+    business. Their innovative solutions have
+    significantly  boosted our efficiency and sales
+   
+   `,
   },
   {
-    name: `Mia Williams`,
-    img: `/students/Mia_Williams.jpg`,
-    review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    name: `Mariya Knowless`,
+    img: `../../../public/name.png`,
+    review: `Working with this AI software development and
+    sales team has been a game-changer for our
+    business. Their innovative solutions have
+    significantly  boosted our efficiency and sales
+   
+`   
   },
 ];
 
