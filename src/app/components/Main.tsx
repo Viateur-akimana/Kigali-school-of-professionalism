@@ -44,7 +44,7 @@ export default function Home() {
       <Head>
         <title>Our Services</title>
       </Head>
-      <h1 className="text-3xl font-bold my-8 text-center">Our Services</h1>
+      <h1 className="text-3xl text-blue-600 font-bold my-8 text-center">Our Services</h1>
       <p className="text-gray-600 mb-8 text-center">
       We transform businesses through technology.  "Revolutionize your businesses with our cutting-edge technology solutions."
       </p>

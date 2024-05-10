@@ -1,5 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
+import metaLogo from '../../../public/meta-logo';
+import googleLogo from '../../../public/google-logo.png';
+import microsoftLogo from '../../../public/'
 
 const CompanyLogos: React.FC = () => {
   return (
