@@ -15,11 +15,18 @@ const Introduction = () => {
             placeholder="Search..."
           />
         </div>
-        <div className="md:w-1/2 flex justify-center">
+        <div className="md:w-1/4 flex justify-center">
           <Image
            src={logoImage} 
            alt="IT Solution Group"
-            width={500} height={500}
+            width={400} height={400}
+             />
+        </div>
+        <div className="md:w-1/4 flex justify-center">
+          <Image
+           src={logoImage} 
+           alt="IT Solution Group"
+            width={200} height={200}
              />
         </div>
       </div>
