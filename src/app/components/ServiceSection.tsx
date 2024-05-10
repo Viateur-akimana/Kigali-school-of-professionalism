@@ -3,14 +3,14 @@ import React from 'react';
 interface ServiceSectionProps {
   title: string;
   description: string;
-  icon: React.ReactNode; // Add an icon prop
+  icon: React.ReactNode; 
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({ title, description, icon }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center mb-4">
-        <div className="bg-blue-500 text-white p-3 rounded-full mr-4">{icon}</div> {/* Render the icon */}
+        <div className="bg-blue-500 text-white p-3 rounded-full mr-4">{icon}</div> 
         <h3 className="text-xl font-bold">{title}</h3>
       </div>
       <p className="text-gray-600 mb-4">{description}</p>

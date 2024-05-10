@@ -3,7 +3,7 @@ import React from 'react';
 import Introduction from './components/Introduction';
 import Choose from './components/Choose';
 // import Carousel from './components/Carousel';
-import 
+import Main from './components/Main'
 
 const HomePage: React.FC = () => {
   return (
@@ -11,6 +11,7 @@ const HomePage: React.FC = () => {
       <Introduction/>
       <Choose/>
       {/* <Carousel/> */}
+      <Main/>
     </div>
   );
 };

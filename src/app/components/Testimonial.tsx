@@ -5,7 +5,7 @@ interface TestimonialProps {
   name: string;
   role: string;
   testimonial: string;
-  avatar: string; // Add an avatar prop
+  avatar: string; 
 }
 
 const Testimonial: React.FC<TestimonialProps> = ({ name, role, testimonial, avatar }) => {
