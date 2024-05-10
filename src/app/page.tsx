@@ -3,6 +3,7 @@ import React from 'react';
 import Introduction from './components/Introduction';
 import Choose from './components/Choose';
 // import Carousel from './components/Carousel';
+import 
 
 const HomePage: React.FC = () => {
   return (
