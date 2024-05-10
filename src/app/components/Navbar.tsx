@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import image3 from '../../../public/image 3.png';
+import image3 from '../../../public/here.png';
 
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -39,19 +39,19 @@ const Navbar: React.FC = () => {
                     </div>
                     <div className="flex mx-auto justify-center ">
                         <div className="mx-10 flex items-baseline space-x-12">
-                            <Link href="/" className="text-gray-700  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/" className="text-black  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Home
                             </Link>
-                            <Link href="/jobs" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
+                            <Link href="/jobs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
                                 Jobs
                             </Link>
-                            <Link href="/programs" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/programs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Programs
                             </Link>
-                            <Link href="/industries" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/industries" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Industries
                             </Link>
-                            <Link href="/about" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/about" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 About
                             </Link>
                         </div>
