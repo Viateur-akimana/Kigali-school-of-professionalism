@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImage from '../../public/here.png';
+import logoImage from '../../../public/here.png';
 import Image from 'next/image';
 
 const Introduction = () => {

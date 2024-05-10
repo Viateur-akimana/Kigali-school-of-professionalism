@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
                         </div>
                     </div>
                     <div className="flex mx-auto justify-center">
-                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded">
+                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded ">
                             Contact
                         </button>
                     </div>
