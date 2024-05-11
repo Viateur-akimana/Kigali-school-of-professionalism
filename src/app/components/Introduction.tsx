@@ -1,7 +1,7 @@
 import React from 'react'
 import logoImage from '../../../public/here.png';
 import Image from 'next/image';
-import search from "../../../public/search.png"
+// import search from "../../../public/search.png"
 
 const Introduction = () => {
   return (
