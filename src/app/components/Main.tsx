@@ -47,7 +47,7 @@ export default function Home() {
       </Head>
       <h1 className="text-3xl text-blue-600 font-bold my-8 text-center">Our Services</h1>
       <p className="text-gray-600 mb-8 text-center">
-      We transform businesses through technology.  "Revolutionize your businesses with our cutting-edge technology solutions."
+      We transform businesses through technology . Revolutionize your businesses with our cutting-edge technology solutions.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         {services.map((service, index) => (
