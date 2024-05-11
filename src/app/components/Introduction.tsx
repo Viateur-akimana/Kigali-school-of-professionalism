@@ -1,6 +1,7 @@
 import React from 'react'
 import logoImage from '../../../public/here.png';
 import Image from 'next/image';
+import search from "../../../public/search.png"
 
 const Introduction = () => {
   return (
@@ -11,9 +12,9 @@ const Introduction = () => {
             The IT Solutions Group is leading the charge towards Rwanda s tech-driven future. With a steadfast commitment to the transformative power of technology, we are driving change in alignment with Vision 2050. Join us in shaping Rwanda s bright and prosperous future!
           </p>
           <input
-            className="bg-gray-200 px-4 py-2 rounded-md w-full md:w-auto"
+            className="bg-gray-100 px-10 py-2 rounded-md  md:w-auto border-2 border-blue-600"
             placeholder="Search..."
-          />
+            />
         </div>
         <div className="md:w-1/4 flex justify-center">
           <Image
