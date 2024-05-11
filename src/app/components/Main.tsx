@@ -4,6 +4,7 @@ import CompanyLogos from '../components/CompanyLogos';
 import Testimonials from '../components/Testimonials';
 import { FaCloud, FaDesktop, FaShieldAlt, FaRobot, FaPenNib, FaBriefcase } from 'react-icons/fa';
 // import Testimonial from './Testimonial';
+import Application from './Application';
 
 const services = [
   {
@@ -60,6 +61,7 @@ export default function Home() {
       </div>
       <CompanyLogos />
       <Testimonials />
+      <Application />
     </div>
   );
 }
