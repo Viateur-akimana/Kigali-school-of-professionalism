@@ -8,22 +8,20 @@ interface EmailData {
 }
 
 const transporter = nodemailer.createTransport({
-  // Configure your email service provider (e.g., Gmail, SendGrid, etc.)
-  // Example for Gmail:
   service: 'gmail',
   auth: {
-    user: 'your-email@gmail.com',
-    pass: 'your-password',
+    user: 'process.env.EMAIL',
+    pass: 'process.env.PASS',
   },
 });
 
 export const sendEmail = async (emailData: EmailData) => {
   try {
     const info = await transporter.sendMail({
-      from: emailData.from, // Sender address
-      to: emailData.to, // Recipient address
-      subject: emailData.subject, // Subject line
-      text: emailData.message, // Plain text body
+      from: emailData.from, 
+      to: emailData.to, 
+      subject: emailData.subject, 
+      text: emailData.message, 
     });
     console.log('Email sent: ', info.messageId);
   } catch (error) {

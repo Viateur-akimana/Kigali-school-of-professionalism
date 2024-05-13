@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { sendEmail } from '../../utils/email';
+import { sendEmail } from '../utils/email';
 
 interface EmailData {
   from: string;

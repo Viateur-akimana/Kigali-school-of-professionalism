@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
     
       try {
         const response = await axios.post('/api/send-email', {
-          from: 'your-email@example.com',
+          from: 'akimanaviateur94@gmail.com',
           to: 'akimanaviateur94@gmail.com',
           subject: `New message from ${formData.first_name} ${formData.last_name}`,
           message: `${formData.message}\n\nFrom: ${formData.first_name} ${formData.last_name} (${formData.email})`,
