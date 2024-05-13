@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import axios from 'axios';
 
 const Footer: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -15,10 +16,26 @@ const Footer: React.FC = () => {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
     };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
     
+      try {
+        const response = await axios.post('/api/send-email', {
+          from: 'your-email@example.com',
+          to: 'akimanaviateur94@gmail.com',
+          subject: `New message from ${formData.first_name} ${formData.last_name}`,
+          message: `${formData.message}\n\nFrom: ${formData.first_name} ${formData.last_name} (${formData.email})`,
+        });
+        console.log(response.data.message);
+        setFormData({ first_name: '', last_name: '', email: '', message: '' });
+      } catch (error) {
+        console.error('Error sending email: ', error);
+      }
+    };    
   return (
     <footer className="bg-blue-600 text-white">
-      <div className="container mx-auto py-8 px-4">
+      <div className="container mx-auto py-8 px-4"> 
         <div className="flex flex-col md:flex-row lg:flex-row justify-between gap-4 w-full">
           <div className="flex flex-col-reverse text-md ">
           <p>Address:KG3499st, Kigali</p>
@@ -27,7 +44,7 @@ const Footer: React.FC = () => {
            
           </div>
 
-          <form className='my-auto'>
+          <form className='my-auto' onSubmit={handleSubmit}>
             <h3 className="font-bold mb-4 justify-center text-2xl text-center">Contact us</h3>
             <div className="grid grid-cols-2 gap-2">
               <input
@@ -65,7 +82,7 @@ const Footer: React.FC = () => {
               className="w-full py-2 px-3 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:ring-0 text-white mt-2 resize-none"
               required
             />
-            <button className="bg-blue-500 text-white font-bold py-2 px-6  rounded-md mt-4 hover:bg-blue-300 transition-colors duration-300">
+            <button className="bg-blue-500 text-white font-bold py-2 px-6  rounded-md mt-4 hover:bg-blue-300 transition-colors duration-300" type='submit'>
               Submit
             </button>
           </form>
