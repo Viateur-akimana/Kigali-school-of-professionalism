@@ -1,8 +1,21 @@
+'use client'
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
+    const [formData, setFormData] = useState({
+      first_name:'',
+      last_name: '',
+      email: '',
+      message: ''
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+    
   return (
     <footer className="bg-blue-600 text-white">
       <div className="container mx-auto py-8 px-4">
@@ -14,33 +27,48 @@ const Footer: React.FC = () => {
            
           </div>
 
-          <div className='my-auto'>
+          <form className='my-auto'>
             <h3 className="font-bold mb-4 justify-center text-2xl text-center">Contact us</h3>
             <div className="grid grid-cols-2 gap-2">
               <input
                 type="text"
                 placeholder="First name"
-                className="py-2 px-3 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:ring-0 "
+                name='first_name'
+                value={formData.first_name}
+                onChange={handleChange}
+                className="py-2 px-3 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:ring-0"
+                required
               />
               <input
                 type="text"
                 placeholder="Last name"
+                name='last_name'
+                value={formData.last_name}
+                onChange={handleChange}
                 className="py-2 px-3 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:ring-0 "
               />
             </div>
             <input
               type="email"
               placeholder="Email"
+              name='email'
+              value={formData.email}
+              onChange={handleChange}
               className="w-1/2 py-2 px-3 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:ring-0  mt-2"
+              required
             />
             <textarea
               placeholder="Message"
+              name='message'
+              value={formData.message}
+              onChange={handleChange}
               className="w-full py-2 px-3 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:ring-0 text-white mt-2 resize-none"
+              required
             />
             <button className="bg-blue-500 text-white font-bold py-2 px-6  rounded-md mt-4 hover:bg-blue-300 transition-colors duration-300">
               Submit
             </button>
-          </div>
+          </form>
         </div>
       </div>
 
