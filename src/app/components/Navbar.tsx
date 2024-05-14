@@ -8,11 +8,6 @@ import ProgramsDropdown from './ProgramsDropDown';
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
 
-const dropdownItems = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
-  ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -58,7 +53,7 @@ const dropdownItems = [
                             <Link href="/" className="text-black  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Home
                             </Link>
-                            <Link href="/jobs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
                                 Jobs
                             </Link>
                             {/* <Link href="/programs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
@@ -69,7 +64,7 @@ const dropdownItems = [
                             <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleService}>
                                 Industries
                             </Link>
-                            <Link href="/about" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 About
                             </Link>
                         </div>
