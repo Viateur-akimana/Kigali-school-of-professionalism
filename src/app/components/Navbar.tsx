@@ -3,9 +3,16 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import image3 from '../../../public/here.png';
+import ProgramsDropdown from './ProgramsDropDown';
 
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+
+const dropdownItems = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,9 +52,11 @@ const Navbar: React.FC = () => {
                             <Link href="/jobs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
                                 Jobs
                             </Link>
-                            <Link href="/programs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            {/* <Link href="/programs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Programs
-                            </Link>
+                            </Link> */}
+                            <ProgramsDropdown />
+
                             <Link href="/industries" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Industries
                             </Link>
