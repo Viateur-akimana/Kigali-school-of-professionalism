@@ -5,7 +5,7 @@ import opportunitiesImg from "../../../public/opportunity.png";
 
 const Chance: React.FC = () => {
   return (
-    <div className="bg-white min-h-screen py-16 border-t-2 ">
+    <div className="bg-white py-6 border-t-2 ">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card
