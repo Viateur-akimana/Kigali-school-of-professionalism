@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
             <Link href="#" aria-label="LinkedIn">
               <FaLinkedin className="text-white hover:text-blue-300 transition-colors duration-300" />
             </Link>
-            <Link href="#" aria-label="Twitter">
+            <Link href="https://twitter.com/Careerdeve10291" aria-label="Twitter">
               <FaTwitter className="text-white hover:text-blue-300 transition-colors duration-300" />
             </Link>
           </div>

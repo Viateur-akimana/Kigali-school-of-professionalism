@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import image1 from "../../../public/hero-image.png";
-import image2 from '../../../public/image1.png';
 
 const Introduction = () => {
   return (
@@ -19,13 +18,7 @@ const Introduction = () => {
       <div className="relative">
    
         <div className="right-20 top-0">
-          <Image src={image1} alt="Image 1" width={200} height={150} />
-        </div>
-        <div className="absolute right-10 bottom-0">
-          <div className="bg-blue-500 w-32 h-24 rounded-lg"></div>
-        </div>
-        <div className=" right-20 bottom-20">
-          <Image src={image2} alt="Image 2" width={200} height={150} />
+          <Image src={image1} alt="Image 1" width={500} height={500} />
         </div>
       </div>
       </div>
