@@ -1,10 +1,7 @@
-
 import Card from './Card';
-import experience from "../../../public/experience.png";
-import internship from "../../../public/internship.png";
-import opportunities from "../../../public/opportunity.png"
-
-
+import experienceImg from "../../../public/experience.png";
+import internshipImg from "../../../public/internship.png";
+import opportunitiesImg from "../../../public/opportunity.png";
 
 const Chance: React.FC = () => {
   return (
@@ -14,19 +11,19 @@ const Chance: React.FC = () => {
           <Card
             title="Opportunities"
             description="Job mastery class"
-            imageSrc={opportunities}
+            imageSrc={opportunitiesImg.src} 
             imageAlt="Opportunities"
           />
           <Card
             title="OUR INTERNERNSHIP HUB"
             description="Learn from our technical experts"
-            imageSrc={internship}
+            imageSrc={internshipImg.src} 
             imageAlt="Internship Hub"
           />
           <Card
             title="EXPERIANCE HUB"
             description="Gain IT experience through our experience hub"
-            imageSrc={experience}
+            imageSrc={experienceImg.src}
             imageAlt="Experience Hub"
           />
         </div>
