@@ -6,9 +6,9 @@ interface ServiceSectionProps {
   icon: React.ReactNode; 
 }
 
-const ServiceSection: React.FC<ServiceSectionProps> = ({ title, description, icon }) => {
+const ServiceSection: React.FC<ServiceSectionProps> = ({ title, description, icon }) => { 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white rounded-lg shadow-md p-6" id="service">
       <div className="flex items-center mb-4">
         <div className="bg-blue-500 text-white p-3 rounded-full mr-4">{icon}</div> 
         <h3 className="text-xl font-bold">{title}</h3>

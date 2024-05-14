@@ -29,6 +29,15 @@ const dropdownItems = [
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+    const handleButtonClick = () => {
+        const footerSection = document.getElementById('footer');
+        footerSection.scrollIntoView({ behavior: 'smooth' });
+      };
+      
+      const handleService = () => {
+        const serviceSection = document.getElementById('service');
+        serviceSection.scrollIntoView({ behavior: 'smooth' });
+      };
 
     return (
         <nav className={`shadow-md ${isScrolled ? 'fixed top-0 w-full bg-white z-10' : ''}`}>
@@ -57,7 +66,7 @@ const dropdownItems = [
                             </Link> */}
                             <ProgramsDropdown />
 
-                            <Link href="/industries" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleService}>
                                 Industries
                             </Link>
                             <Link href="/about" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
@@ -66,7 +75,7 @@ const dropdownItems = [
                         </div>
                     </div>
                     <div className="flex mx-auto justify-center">
-                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded ">
+                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded "  onClick={handleButtonClick}>
                             Contact
                         </button>
                     </div>
