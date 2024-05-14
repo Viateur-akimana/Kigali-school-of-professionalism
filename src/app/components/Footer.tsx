@@ -29,6 +29,7 @@
           });
           console.log(response.data.message);
           setFormData({ first_name: '', last_name: '', email: '', message: '' });
+         alert("Message sent successfully")
         } catch (error) {
           console.error('Error sending email: ', error);
         }
