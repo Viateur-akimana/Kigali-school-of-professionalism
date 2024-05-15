@@ -13,21 +13,21 @@ const Chance: React.FC = () => {
             description="Job mastery class"
             imageSrc={opportunitiesImg.src}
             imageAlt="Opportunities"
-            className="mx-auto" 
+         
           />
           <Card
             title="OUR INTERNERNSHIP HUB"
             description="Learn from our technical experts"
             imageSrc={internshipImg.src}
             imageAlt="Internship Hub"
-            className="mx-auto" 
+        
           />
           <Card
             title="EXPERIANCE HUB"
             description="Gain IT experience through our experience hub"
             imageSrc={experienceImg.src}
             imageAlt="Experience Hub"
-            className="mx-auto" 
+        
           />
         </div>
       </div>
