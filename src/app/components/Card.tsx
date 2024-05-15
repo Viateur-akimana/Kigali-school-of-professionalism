@@ -1,29 +1,29 @@
-import Image from 'next/image';
-import Link from 'next/link';
+// import Image from 'next/image';
+// import Link from 'next/link';
 
-interface CardProps {
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
+// interface CardProps {
+//   title: string;
+//   description: string;
+//   imageSrc: string;
+//   imageAlt: string;
  
-}
+// }
 
-const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt }) => {
-  return (
-    <div className={`bg-white rounded-lg shadow-md p-2 border flex flex-col items-center justify-center`}>
-      <h3 className="text-lg font-semibold mb-2 text-blue-600 text-center">{title}</h3>
-      <p className="text-gray-800 text-center mb-4">{description}</p>
-      <div className="flex justify-center mb-4">
-        <Image src={imageSrc} alt={imageAlt} width={350} height={300} className="rounded-lg" />
-      </div>
-      <div className="text-center">
-        <Link href="#" className="text-blue-500 hover:text-blue-700">
-          Learn more
-        </Link>
-      </div>
-    </div>
-  );
-};
+// const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt }) => {
+//   return (
+//     <div className={`bg-white rounded-lg shadow-md p-2 border flex flex-col items-center justify-center`}>
+//       <h3 className="text-lg font-semibold mb-2 text-blue-600 text-center">{title}</h3>
+//       <p className="text-gray-800 text-center mb-4">{description}</p>
+//       <div className="flex justify-center mb-4">
+//         <Image src={imageSrc} alt={imageAlt} width={350} height={300} className="rounded-lg" />
+//       </div>
+//       <div className="text-center">
+//         <Link href="#" className="text-blue-500 hover:text-blue-700">
+//           Learn more
+//         </Link>
+//       </div>
+//     </div>
+//   );
+// };
 
-export default Card;
+// export default Card;

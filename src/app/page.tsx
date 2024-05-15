@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       <Introduction/>
       <Choose/>
-      <Chance/>
+      {/* <Chance/> */}
       <Main/>
     </div>
   );
