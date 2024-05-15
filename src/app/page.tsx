@@ -4,7 +4,7 @@ import Introduction from './components/Introduction';
 import Choose from './components/Choose';
 
 import Main from './components/Main'
-import Chance from './components/Chance';
+// import Chance from './components/Chance';
 
 const HomePage: React.FC = () => {
   return (

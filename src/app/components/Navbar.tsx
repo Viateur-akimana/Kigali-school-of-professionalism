@@ -26,12 +26,16 @@ const Navbar: React.FC = () => {
     }, []);
     const handleButtonClick = () => {
         const footerSection = document.getElementById('footer');
-        footerSection.scrollIntoView({ behavior: 'smooth' });
+        if (footerSection) {
+            footerSection.scrollIntoView({ behavior: 'smooth' });
+        }
       };
       
       const handleService = () => {
         const serviceSection = document.getElementById('service');
-        serviceSection.scrollIntoView({ behavior: 'smooth' });
+        if (serviceSection) {
+            serviceSection.scrollIntoView({ behavior: 'smooth' });
+        }
       };
 
     return (
