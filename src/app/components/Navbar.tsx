@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
         }
       };
       const handleJobs = () => {
-        const jobSection = document.getElementById('service');
+        const jobSection = document.getElementById('jobs');
         if (jobSection) {
             jobSection.scrollIntoView({ behavior: 'smooth' });
         }

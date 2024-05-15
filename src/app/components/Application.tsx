@@ -3,7 +3,7 @@ import React from 'react';
 
 const Application: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center" id='jobs'>
       <div className="p-6 bg-white rounded-lg  mx-auto justify-center border-t-2 shadow-lg">
         <h1 className="text-2xl flex mx-auto justify-center text-blue-600 font-bold">Ready for an internship?</h1>
         <p className="mb-4 text-gray-600 mx-6 my-6">
