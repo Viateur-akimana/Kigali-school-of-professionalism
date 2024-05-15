@@ -6,7 +6,7 @@ interface CardProps {
   description: string;
   imageSrc: string;
   imageAlt: string;
-  className?: string;  
+ 
 }
 
 const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt }) => {
