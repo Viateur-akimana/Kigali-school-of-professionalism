@@ -37,7 +37,12 @@ const Navbar: React.FC = () => {
             serviceSection.scrollIntoView({ behavior: 'smooth' });
         }
       };
-
+      const handleJobs = () => {
+        const jobSection = document.getElementById('service');
+        if (jobSection) {
+            jobSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
     return (
         <nav className={`shadow-md ${isScrolled ? 'fixed top-0 w-full bg-white z-10' : ''}`}>
             <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,7 +62,7 @@ const Navbar: React.FC = () => {
                             <Link href="/" className="text-black  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Home
                             </Link>
-                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" >
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleJobs}>
                                 Jobs
                             </Link>
                             {/* <Link href="/programs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
