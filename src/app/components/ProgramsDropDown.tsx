@@ -8,9 +8,9 @@ const ProgramsDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const programs = [
-    { name: 'Intership', link: '/program1' },
-    { name: 'Experience', link: '/program2' },
-    { name: 'Mentorship', link: '/program3' },
+    { name: 'Internship', link: '#' },
+    { name: 'Experience', link: '#' },
+    { name: 'Mentorship', link: '#' },
     
   ];
 
@@ -19,7 +19,7 @@ const ProgramsDropdown: React.FC = () => {
       <div>
         <button
           type="button"
-          className="inline-flex items-center text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium"
+          className="inline-flex items-center text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium"
           onClick={() => setIsOpen(!isOpen)}
         >
           Programs
@@ -54,7 +54,7 @@ const ProgramsDropdown: React.FC = () => {
               <Link
                 key={index}
                 href={program.link}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900"
                 onClick={() => setIsOpen(false)}
               >
                 {program.name}
