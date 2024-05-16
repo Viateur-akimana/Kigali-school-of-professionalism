@@ -59,10 +59,10 @@ const Navbar: React.FC = () => {
                     </div>
                     <div className="flex mx-auto justify-center ">
                         <div className="mx-10 flex items-baseline space-x-12">
-                            <Link href="/" className="text-gray-500  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/" className="text-black  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Home
-                            </Link>
-                            <Link href="#" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleJobs}>
+                            </Link> 
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleJobs}>
                                 Jobs
                             </Link>
                             {/* <Link href="/programs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
@@ -70,10 +70,10 @@ const Navbar: React.FC = () => {
                             </Link> */}
                             <ProgramsDropdown />
 
-                            <Link href="#" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleService}>
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleService}>
                                 Industries
                             </Link>
-                            <Link href="#" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 About
                             </Link>
                         </div>
