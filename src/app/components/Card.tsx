@@ -16,7 +16,14 @@ const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt, ima
       <h3 className="text-lg font-semibold mb-2 text-blue-600 text-center">{title}</h3>
       <p className="text-gray-800 text-center mb-4">{description}</p>
       <div className="flex justify-center mb-4">
-        <Image src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} className="rounded-lg" />
+        <Image 
+          src={imageSrc} 
+          alt={imageAlt} 
+          width={imageWidth} 
+          height={imageHeight} 
+          className="rounded-lg" 
+          style={{ width: "auto", height: "auto" }} // Add CSS style to maintain aspect ratio
+        />
       </div>
       <div className="text-center">
         <Link href="#" className="text-blue-500 hover:text-blue-700">
