@@ -19,7 +19,7 @@ const Internship: React.FC = () => {
         <div className="md:w-1/2 m-10 p-10 md:mb-0 space-y-7 text-gray-600">
           <h1 className="text-4xl text-blue-600 font-bold mb-4">What we offer</h1>
           <p className="text-lg opacity-4">
-            <p className='my-4 text-xl text-gray-800'>Our Internship Programme offers students and recent graduates the opportunity to gain direct practical work experience.</p>
+            <div className='my-4 text-xl text-gray-800'> <p>Our Internship Programme offers students and recent graduates the opportunity to gain direct practical work experience.</p></div>
 
             <span className='font-bold text-gray-800'>• Duration:</span> <p>The duration of an internship is normally <span className='font-bold text-gray-800'>between four and sixteen weeks</span>. Internships can be on a remote or a office basis.</p>
 
