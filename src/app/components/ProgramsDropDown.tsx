@@ -8,10 +8,9 @@ const ProgramsDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const programs = [
-    { name: 'Internship', link: '#' },
-    { name: 'Experience', link: '#' },
-    { name: 'Mentorship', link: '#' },
-    
+    { name: 'Internship', link: '/internship' },
+    { name: 'Experience', link: '/experience' },
+    { name: 'Mentorship', link: '/mentorship' },
   ];
 
   return (
