@@ -9,7 +9,7 @@ const Experience: React.FC = () => {
       <div className="text-center mb-10 border-b-2">
         <h1 className="text-3xl flex mx-auto justify-center text-blue-600 font-bold">Gain Experience</h1>
         <p className="mb-10 text-gray-700 mx-12 my-6 text-xl">
-          Our experience program is designed to provide hands-on learning opportunities for individuals looking to enhance their skills and knowledge. Whether you're a recent graduate or a seasoned professional, our program offers a range of experiences to help you grow and succeed in your career.
+          Our experience program is designed to provide hands-on learning opportunities for individuals looking to enhance their skills and knowledge. Whether you are a recent graduate or a seasoned professional, our program offers a range of experiences to help you grow and succeed in your career.
         </p>
       </div>
 
@@ -36,11 +36,11 @@ const Experience: React.FC = () => {
         <div className="p-6 bg-white rounded-lg mx-auto justify-center border-t-2 shadow-lg">
           <h1 className="text-2xl flex mx-auto justify-center text-blue-600 font-bold">Ready to gain experience?</h1>
           <p className="mb-4 text-gray-600 mx-6 my-6">
-            Join our experience program and take your skills to the next level. Whether you're interested in technology, business, or creative fields, we have opportunities for you to learn, grow, and succeed. Apply now and start your journey!
+            Join our experience program and take your skills to the next level. Whether you are interested in technology, business, or creative fields, we have opportunities for you to learn, grow, and succeed. Apply now and start your journey!
           </p>
           <Link href="https://forms.office.com/pages/responsepage.aspx?id=SkBXWhK0KUKNZzA_2mwSSwskkQHjChNOrnrVmzogwhRUMEhFQjE4RkFaRVJRNUdIN0VLMVIxWThGQS4u" target="_blank">
             <button className="bg-blue-600 flex mx-auto justify-center hover:bg-blue-700 text-white font-bold py-2 px-4 m-6 rounded">
-            Register for an Experience
+              Register for an Experience
             </button>
           </Link>
         </div>

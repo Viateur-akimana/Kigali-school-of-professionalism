@@ -8,11 +8,11 @@ const Internship: React.FC = () => {
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
 
       <div className="text-center mb-10 border-b-2">
-        <h1 className="text-3xl flex mx-auto justify-center text-blue-600 font-bold">Internship Program</h1>  
+        <h1 className="text-3xl flex mx-auto justify-center text-blue-600 font-bold">Internship Program</h1>
         <p className="mb-10 text-gray-700 mx-12 my-6 text-xl">
           Experience the IT industry first-hand with our comprehensive internship program designed for Rwandan graduates and final-year students.
           To qualify for our internship program, you must be a Rwandan graduate or a final-year student with a passion for technology and a desire to learn and grow in the tech industry.
-          Our internship program offers valuable experience and skills to thrive in the tech industry. You'll have the opportunity to work on real projects, receive mentorship from industry professionals, and enhance your technical and soft skills.
+          Our internship program offers valuable experience and skills to thrive in the tech industry. You will have the opportunity to work on real projects, receive mentorship from industry professionals, and enhance your technical and soft skills.
         </p>
       </div>
       <div className="flex flex-col md:flex-row items-center mb-8">
