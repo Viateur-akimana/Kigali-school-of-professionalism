@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import heroImage from '../../../public/hero-image.png';
+import heroImage from '../../../public/who.jpg';
 import educationIcon from '../../../public/Vectors.png';
 import certificationIcon from '../../../public/Vector.png';
 import experienceIcon from '../../../public/Vector.png';
