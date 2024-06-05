@@ -1,6 +1,6 @@
 import React from 'react';
 import Testimonial from './Testimonial';
-import avatar from '../../../public/avatar.png'
+import avatar from '../../../public/avatar.png';
 
 const testimonials = [
   {
@@ -16,19 +16,18 @@ const testimonials = [
     avatar: '/avatar.png',
   },
   {
-    name: 'John Doe',
-    role: 'Marketing Manager',
-    testimonial: 'The UI/UX design work and web development services provided by this company were top-notch. They truly understand the importance of user experience and delivered exceptional results.',
+    name: 'Jane Smith',
+    role: 'Product Designer',
+    testimonial: 'The collaboration with this team was seamless. They listened to our needs and provided innovative solutions that exceeded our expectations.',
     avatar: '/avatar.png',
   }
- 
 ];
 
 const Testimonials: React.FC = () => {
   return (
-    <div className="m-12">
-      <h2 className="text-2xl font-bold mb-600 text-blue-600 text-center">Testimonials</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 m-4 p-4">
+    <div className="mx-4 my-12">
+      <h2 className="text-2xl font-bold mb-6 text-blue-600 text-center">Testimonials</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {testimonials.map((testimonial, index) => (
           <Testimonial
             key={index}
