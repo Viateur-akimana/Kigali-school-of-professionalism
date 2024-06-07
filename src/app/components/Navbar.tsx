@@ -49,7 +49,7 @@ const Navbar = () => {
                             <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={() => handleScroll('service')}>
                                 Industries
                             </Link>
-                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/about" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 About
                             </Link>
                         </div>
