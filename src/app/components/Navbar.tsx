@@ -5,18 +5,14 @@ import Image from 'next/image';
 import image3 from '../../../public/here.png';
 import ProgramsDropdown from './ProgramsDropDown';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.pageYOffset;
-            if (scrollTop > 0) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
+            setIsScrolled(scrollTop > 0);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -25,51 +21,32 @@ const Navbar: React.FC = () => {
         };
     }, []);
 
-    const handleButtonClick = () => {
-        const footerSection = document.getElementById('footer');
-        if (footerSection) {
-            footerSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    const handleService = () => {
-        const serviceSection = document.getElementById('service');
-        if (serviceSection) {
-            serviceSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    const handleJobs = () => {
-        const jobSection = document.getElementById('jobs');
-        if (jobSection) {
-            jobSection.scrollIntoView({ behavior: 'smooth' });
+    const handleScroll = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
     return (
-        <nav className={`shadow-md ${isScrolled ? 'fixed top-0 w-full bg-white z-10' : ''}`}>
-            <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className={`shadow-md ${isScrolled ? 'fixed top-0 left-0 right-0 bg-white z-10' : ''}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-24">
-                    <div className="flex">
+                    <div className="flex justify-center">
                         <Link href="/" className="text-gray-900 font-bold">
-                            <Image
-                                src={image3}
-                                alt='Logo'
-                                width={120}
-                                height={60}
-                            />
+                            <Image src={image3} alt='Logo' width={120} height={60} />
                         </Link>
                     </div>
                     <div className="hidden md:flex mx-auto justify-center">
                         <div className="mx-10 flex items-baseline space-x-12">
-                            <Link href="/" className="text-black  hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
+                            <Link href="/" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
                                 Home
-                            </Link> 
-                            <Link href="/jobs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleJobs}>
+                            </Link>
+                            <Link href="/jobs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={() => handleScroll('jobs')}>
                                 Jobs
                             </Link>
                             <ProgramsDropdown />
-                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={handleService}>
+                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={() => handleScroll('service')}>
                                 Industries
                             </Link>
                             <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
@@ -78,7 +55,7 @@ const Navbar: React.FC = () => {
                         </div>
                     </div>
                     <div className="hidden md:flex mx-auto justify-center">
-                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded" onClick={handleButtonClick}>
+                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded" onClick={() => handleScroll('footer')}>
                             Contact
                         </button>
                     </div>
@@ -104,16 +81,16 @@ const Navbar: React.FC = () => {
                         <Link href="/" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">
                             Home
                         </Link>
-                        <Link href="/jobs" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={handleJobs}>
+                        <Link href="/jobs" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => handleScroll('jobs')}>
                             Jobs
                         </Link>
-                        <Link href="#" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={handleService}>
+                        <Link href="#" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => handleScroll('service')}>
                             Industries
                         </Link>
                         <Link href="#" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">
                             About
                         </Link>
-                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded w-full" onClick={handleButtonClick}>
+                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded w-full" onClick={() => handleScroll('footer')}>
                             Contact
                         </button>
                     </div>
