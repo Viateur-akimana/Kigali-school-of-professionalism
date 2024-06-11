@@ -1,4 +1,3 @@
-'use client';
 import React, { useState } from 'react';
 import OpenAI from 'openai';
 
@@ -18,30 +17,28 @@ const Chatbot = () => {
     setIsLoading(true);
 
     // Add the user's message to the chat history
-    setChatHistory((prevChat) => [
-      ...prevChat,
+    const updatedChatHistory = [
+      ...chatHistory,
       { role: 'user', content: userInput },
-    ]);
+    ];
+    setChatHistory(updatedChatHistory);
 
     try {
       // Make a request to OpenAI for the chat completion
       const chatCompletion = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: [
-          ...chatHistory,
-          { role: 'user', content: userInput },
-        ],
+        messages: updatedChatHistory,
       });
 
       // Add the assistant's response to the chat history
-      setChatHistory((prevChat) => [
-        ...prevChat,
+      setChatHistory([
+        ...updatedChatHistory,
         { role: 'assistant', content: chatCompletion.choices[0].message.content },
       ]);
     } catch (error) {
       console.error('Error fetching chat completion:', error);
-      setChatHistory((prevChat) => [
-        ...prevChat,
+      setChatHistory([
+        ...updatedChatHistory,
         { role: 'assistant', content: 'Sorry, I am unable to process your request right now.' },
       ]);
     }
