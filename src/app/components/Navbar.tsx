@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -21,7 +22,7 @@ const Navbar = () => {
         };
     }, []);
 
-    const handleScroll = (sectionId) => {
+    const handleScroll = (sectionId: string) => {
         const section = document.getElementById(sectionId);
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
@@ -87,7 +88,7 @@ const Navbar = () => {
                         <Link href="#" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => handleScroll('service')}>
                             Industries
                         </Link>
-                        <Link href="#" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">
+                        <Link href="/about" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">
                             About
                         </Link>
                         <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded w-full" onClick={() => handleScroll('footer')}>
