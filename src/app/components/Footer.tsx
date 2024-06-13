@@ -103,9 +103,6 @@ const Footer: React.FC = () => {
             <Link href="https://twitter.com/Careerdeve10291" aria-label="Twitter">
               <FaTwitter className="text-white hover:text-blue-300 transition-colors duration-300" />
             </Link>
-            <Link href="/chatbot" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
-              Chatbot
-            </Link>
           </div>
         </div>
       </div>
