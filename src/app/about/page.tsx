@@ -1,89 +1,53 @@
-// components/Chatbot.tsx
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import OpenAI from 'openai';
+import image1 from '../../../public/mission.jpg'
+import Image from 'next/image'
 
-
-interface ChatMessage {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
-
-const Chatbot = () => {
-  const [userInput, setUserInput] = useState('');
-  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleUserInput = async () => {
-    if (userInput.trim() === '') return;
-
-    setIsLoading(true);
-    setChatHistory((prevChat) => [...prevChat, { role: 'user', content: userInput }]);
-
-    try {
-      const chatCompletion = await openai.chat.completions.create({
-        messages: [...chatHistory, { role: 'user', content: userInput }],
-        model: 'gpt-3.5-turbo',
-      });
-
-      const assistantContent = chatCompletion.choices[0].message.content ?? "I'm sorry, I couldn't understand that.";
-
-      setChatHistory((prevChat) => [
-        ...prevChat,
-        { role: 'assistant', content: assistantContent },
-      ]);
-    } catch (error) {
-      console.error('Error fetching chat completion:', error);
-      setChatHistory((prevChat) => [
-        ...prevChat,
-        { role: 'assistant', content: 'There was an error processing your request.' },
-      ]);
-    }
-
-    setUserInput('');
-    setIsLoading(false);
-  };
-
+const AboutPage: React.FC = () => {
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">AI Chatbot</h1>
-      <div className="border p-4 rounded-lg shadow-md">
-        <div className="mb-4">
-          {chatHistory.map((chat, index) => (
-            <div key={index} className={`mb-2 p-2 ${chat.role === 'user' ? 'text-right' : 'text-left'}`}>
-              <span className={`inline-block p-2 rounded-lg ${chat.role === 'user' ? 'bg-blue-100' : 'bg-gray-100'}`}>
-                {chat.content}
-              </span>
-            </div>
-          ))}
+    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+
+      <div className="text-center mb-10 border-b-2">
+        <h1 className="text-3xl flex mx-auto justify-center text-blue-600 font-bold">Who we are?</h1>
+        <p className="mb-10 text-gray-700 mx-12 my-6 text-xl">
+          IT Solutions Group is a pioneering facilitator entity dedicated to empowering
+          Students from technology schools to lead the country s tech revolution in alignment
+          with Vision 2050. We are committed to nurturing a modern tech-savvy generation, fostering
+          innovation, and providing impactful technology solutions for individuals,
+          enterprises, and large companies across diverse industries.
+        </p>
+      </div>
+      <div className="flex flex-col md:flex-row items-center mb-8">
+        <div className="md:w-1/2 m-10 p-10 md:mb-0 space-y-7 text-gray-600">
+          <h1 className="text-4xl text-blue-600 font-bold mb-4">Our mission</h1>
+          <div className="text-lg opacity-4">
+            <div className='my-4 text-xl text-gray-800'> <p>Our mission at IT
+              Solutions Group is to leverage our expertise and passion for technology
+              to transform challenges into innovative solutions, driving development
+              and progress. We are dedicated to harnessing the power of technology to
+              empower individuals, businesses, and communities, making a tangible and positive
+              impact on Rwandan society and beyond.</p></div>
+
+          </div>
         </div>
-        {isLoading && <p className="text-center text-gray-500">Loading...</p>}
-        <div className="flex">
-          <input
-            type="text"
-            className="flex-1 border p-2 rounded-l-lg"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleUserInput()}
-            disabled={isLoading}
-          />
-          <button
-            className="bg-blue-500 text-white p-2 rounded-r-lg"
-            onClick={handleUserInput}
-            disabled={isLoading}
-          >
-            Send
-          </button>
+        <div className="relative">
+
+          <div className="right-20 top-0">
+            <Image src={image1} alt="Image 1" width={500} height={500} />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center">
+        <div className="p-6 bg-white rounded-lg mx-auto justify-center border-t-2 shadow-lg">
+          <h1 className="text-2xl flex mx-auto justify-center text-blue-600 font-bold">Our Vision</h1>
+          <p className="mb-4 text-gray-600 mx-6 my-6">
+            Our vision at IT Solutions Group is to democratize access to technology for all Rwandans, creating an inclusive space where everyone can benefit and thrive. We strive to bridge the digital divide by empowering individuals and communities through technology, fostering innovation, and unlocking sustainable growth and prosperity opportunities.
+          </p>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default Chatbot;
+export default AboutPage;
