@@ -14,7 +14,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt, imageWidth, imageHeight }) => {
   return (
     <motion.div 
-      className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 flex flex-col items-center justify-center overflow-hidden"
+      className="bg-gradient-to-br from-white-900 to-white-800 rounded-xl shadow-lg p-6 border border-gray-300 flex flex-col items-center justify-center overflow-hidden"
       whileHover={{ scale: 1.05, y: -5 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt, ima
         {title}
       </motion.h3>
       <motion.p 
-        className="text-gray-300 text-center mb-6"
+        className="text-gray-900 text-center mb-6"
         initial={{ opacity: 0.6 }}
         whileHover={{ opacity: 1 }}
       >
