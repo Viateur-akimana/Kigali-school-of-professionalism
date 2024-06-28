@@ -1,36 +1,59 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface CardProps {
   title: string;
   description: string;
   imageSrc: string;
   imageAlt: string;
-  imageWidth: number; // Add imageWidth and imageHeight to CardProps
+  imageWidth: number;
   imageHeight: number;
 }
 
 const Card: React.FC<CardProps> = ({ title, description, imageSrc, imageAlt, imageWidth, imageHeight }) => {
   return (
-    <div className={`bg-white rounded-lg shadow-md p-2 border flex flex-col items-center justify-center`}>
-      <h3 className="text-lg font-semibold mb-2 text-blue-600 text-center">{title}</h3>
-      <p className="text-gray-800 text-center mb-4">{description}</p>
-      <div className="flex justify-center mb-4">
-        <Image 
-          src={imageSrc} 
-          alt={imageAlt} 
-          width={imageWidth} 
-          height={imageHeight} 
-          className="rounded-lg" 
-          style={{ width: "auto", height: "auto" }} // Add CSS style to maintain aspect ratio
+    <motion.div 
+      className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 flex flex-col items-center justify-center overflow-hidden"
+      whileHover={{ scale: 1.05, y: -5 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <motion.h3 
+        className="text-2xl font-bold mb-3 text-blue-400 text-center"
+        whileHover={{ scale: 1.1 }}
+      >
+        {title}
+      </motion.h3>
+      <motion.p 
+        className="text-gray-300 text-center mb-6"
+        initial={{ opacity: 0.6 }}
+        whileHover={{ opacity: 1 }}
+      >
+        {description}
+      </motion.p>
+      <motion.div 
+        className="flex justify-center mb-6 overflow-hidden rounded-lg"
+        whileHover={{ scale: 1.1 }}
+      >
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
+          className="rounded-lg"
+          style={{ width: "auto", height: "auto" }}
         />
-      </div>
-      <div className="text-center">
-        <Link href="#" className="text-blue-500 hover:text-blue-700">
+      </motion.div>
+      <motion.div 
+        className="text-center"
+        whileHover={{ scale: 1.1 }}
+      >
+        <Link href="#" className="inline-block px-6 py-3 bg-blue-500 text-white rounded-full 
+        hover:bg-blue-600 transition-colors duration-300 shadow-lg hover:shadow-blue-500/50">
           Learn more
         </Link>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
