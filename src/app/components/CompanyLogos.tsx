@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Slider from 'react-slick';
+import { motion } from 'framer-motion';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import metaLogo from '../../../public/meta-logo.png';
@@ -34,41 +35,82 @@ const CompanyLogos: React.FC<CompanyLogosProps> = () => {
     ],
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  const logoData = [
+    { src: metaLogo, alt: "Meta", color: "text-blue-600" },
+    { src: googleLogo, alt: "Google", color: "text-yellow-500" },
+    { src: microsoftLogo, alt: "Microsoft", color: "text-blue-500" },
+  ];
+
   return (
-    <div className="border-t-2">
-      <h2 className="text-2xl font-bold mb-2 text-blue-600 text-center m-4 p-4">Trusted by</h2>
-      <p className="text-gray-600 mb-6 text-center">Trusted by hundreds of companies</p>
+    <motion.div 
+      className="border-t-2"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
+    >
+      <motion.h2 className="text-2xl font-bold mb-2 text-blue-600 text-center m-4 p-4" variants={itemVariants}>
+        Trusted by
+      </motion.h2>
+      <motion.p className="text-gray-600 mb-6 text-center" variants={itemVariants}>
+        Trusted by hundreds of companies
+      </motion.p>
       <div className="md:hidden">
         <Slider {...settings}>
-          <div className="bg-white rounded-lg shadow-md p-6 flex items-center mx-auto">
-            <Image src={metaLogo} alt="Meta" width={100} height={100} />
-            <span className="ml-6 text-xl text-blue-600 px-8 font-bold">Meta</span>
-          </div>
-          <div className="bg-white rounded-lg shadow-md p-6 flex items-center mx-auto">
-            <Image src={googleLogo} alt="Google" width={100} height={100} />
-            <span className="ml-6 text-xl text-yellow-500 font-bold px-8">Google</span>
-          </div>
-          <div className="bg-white rounded-lg shadow-md p-6 flex items-center mx-auto">
-            <Image src={microsoftLogo} alt="Microsoft" width={100} height={100} />
-            <span className="ml-4 text-blue-500 text-xl font-bold px-8">Microsoft</span>
-          </div>
+          {logoData.map((logo, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <div className="bg-white rounded-lg shadow-md p-6 flex items-center mx-auto">
+                <Image src={logo.src} alt={logo.alt} width={100} height={100} />
+                <span className={`ml-6 text-xl ${logo.color} px-8 font-bold`}>{logo.alt}</span>
+              </div>
+            </motion.div>
+          ))}
         </Slider>
       </div>
-      <div className="hidden md:flex mx-auto justify-center my-4 space-x-4">
-        <div className="bg-white rounded-lg shadow-md p-6 flex items-center mr-4">
-          <Image src={metaLogo} alt="Meta" width={100} height={100} />
-          <span className="ml-6 text-xl text-blue-600 px-8 font-bold">Meta</span>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6 flex items-center mr-4">
-          <Image src={googleLogo} alt="Google" width={100} height={100} />
-          <span className="ml-6 text-xl text-yellow-500 font-bold px-8">Google</span>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6 flex items-center">
-          <Image src={microsoftLogo} alt="Microsoft" width={100} height={100} />
-          <span className="ml-4 text-blue-500 text-xl font-bold px-8">Microsoft</span>
-        </div>
-      </div>
-    </div>
+      <motion.div className="hidden md:flex mx-auto justify-center my-4 space-x-4" variants={containerVariants}>
+        {logoData.map((logo, index) => (
+          <motion.div 
+            key={index}
+            className="bg-white rounded-lg shadow-md p-6 flex items-center"
+            variants={itemVariants}
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)",
+              transition: { duration: 0.3 }
+            }}
+          >
+            <Image src={logo.src} alt={logo.alt} width={100} height={100} />
+            <motion.span 
+              className={`ml-6 text-xl ${logo.color} px-8 font-bold`}
+              whileHover={{ scale: 1.1 }}
+            >
+              {logo.alt}
+            </motion.span>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
   );
 };
 
