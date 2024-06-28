@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import image3 from '../../../public/here.png';
 import ProgramsDropdown from './ProgramsDropDown';
 
@@ -29,8 +30,63 @@ const Navbar = () => {
         }
     };
 
+    const navbarVariants = {
+        hidden: { opacity: 0, y: -50 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+                type: "spring", 
+                stiffness: 100, 
+                damping: 15 
+            }
+        }
+    };
+
+    const linkVariants = {
+        hover: { 
+            scale: 1.1, 
+            transition: { 
+                type: "spring", 
+                stiffness: 400, 
+                damping: 10 
+            } 
+        }
+    };
+
+    const menuVariants = {
+        hidden: { opacity: 0, height: 0 },
+        visible: { 
+            opacity: 1, 
+            height: "auto",
+            transition: { 
+                duration: 0.3,
+                when: "beforeChildren",
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const menuItemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 20 
+            }
+        }
+    };
+
     return (
-        <nav className={`shadow-md ${isScrolled ? 'fixed top-0 left-0 right-0 bg-white z-10' : ''}`}>
+        <motion.nav 
+            className={`shadow-md ${isScrolled ? 'fixed top-0 left-0 right-0 bg-white z-10' : ''}`}
+            initial="hidden"
+            animate="visible"
+            variants={navbarVariants}
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-24">
                     <div className="flex justify-center">
@@ -40,25 +96,31 @@ const Navbar = () => {
                     </div>
                     <div className="hidden md:flex mx-auto justify-center">
                         <div className="mx-10 flex items-baseline space-x-12">
-                            <Link href="/" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
-                                Home
-                            </Link>
-                            <Link href="/jobs" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={() => handleScroll('jobs')}>
-                                Jobs
-                            </Link>
-                            <ProgramsDropdown />
-                            <Link href="#" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium" onClick={() => handleScroll('service')}>
-                                Industries
-                            </Link>
-                            <Link href="/about" className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium">
-                                About
-                            </Link>
+                            {['Home', 'Jobs', 'Industries', 'About'].map((item, index) => (
+                                <motion.div key={index} variants={linkVariants} whileHover="hover">
+                                    <Link 
+                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : '#'} 
+                                        className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium"
+                                        onClick={() => item === 'Jobs' ? handleScroll('jobs') : item === 'Industries' ? handleScroll('service') : null}
+                                    >
+                                        {item}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                            <motion.div variants={linkVariants} whileHover="hover">
+                                <ProgramsDropdown />
+                            </motion.div>
                         </div>
                     </div>
                     <div className="hidden md:flex mx-auto justify-center">
-                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded" onClick={() => handleScroll('footer')}>
+                        <motion.button 
+                            className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded"
+                            onClick={() => handleScroll('footer')}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
                             Contact
-                        </button>
+                        </motion.button>
                     </div>
                     <div className="md:hidden flex items-center">
                         <button
@@ -76,28 +138,41 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            {isMenuOpen && (
-                <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link href="/" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">
-                            Home
-                        </Link>
-                        <Link href="/jobs" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => handleScroll('jobs')}>
-                            Jobs
-                        </Link>
-                        <Link href="#" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium" onClick={() => handleScroll('service')}>
-                            Industries
-                        </Link>
-                        <Link href="/about" className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">
-                            About
-                        </Link>
-                        <button className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded w-full" onClick={() => handleScroll('footer')}>
-                            Contact
-                        </button>
-                    </div>
-                </div>
-            )}
-        </nav>
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div 
+                        className="md:hidden"
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={menuVariants}
+                    >
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            {['Home', 'Jobs', 'Industries', 'About'].map((item, index) => (
+                                <motion.div key={index} variants={menuItemVariants}>
+                                    <Link 
+                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : '#'} 
+                                        className="text-black hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+                                        onClick={() => item === 'Jobs' ? handleScroll('jobs') : item === 'Industries' ? handleScroll('service') : null}
+                                    >
+                                        {item}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                            <motion.button 
+                                className="bg-gradient-to-r from-[#0064E1] to-[#3C3B6E] hover:bg-gradient-to-br text-white font-bold py-2 px-4 rounded w-full"
+                                onClick={() => handleScroll('footer')}
+                                variants={menuItemVariants}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Contact
+                            </motion.button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.nav>
     );
 };
 
