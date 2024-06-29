@@ -8,7 +8,7 @@ import Chance from './components/Chance';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto">
       <Introduction/>
       <Choose/>
       <Chance/>
