@@ -48,20 +48,10 @@ const Introduction: React.FC = () => {
   };
 
   return (
-    <motion.div
-      className="min-h-screen relative"
-      style={{ backgroundImage: `url(${image1.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      <div className="absolute inset-0 bg-black bg-opacity-50" />
-
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <DirectionAwareHover imageUrl={image1.src}>
+     <DirectionAwareHover imageUrl={image1.src} imageClassName='object-cover object-top'>
           <motion.div className="text-center text-white">
             <motion.h1
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-2xl md:text-7xl font-bold mb-6"
               variants={itemVariants}
             >
               IT Solution Group Limited
@@ -84,8 +74,7 @@ const Introduction: React.FC = () => {
             </motion.div>
           </motion.div>
         </DirectionAwareHover>
-      </div>
-    </motion.div>
+    
   );
 };
 

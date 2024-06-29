@@ -55,8 +55,8 @@ export const DirectionAwareHover = ({
     obj: HTMLElement
   ) => {
     const { width: w, height: h, left, top } = obj.getBoundingClientRect();
-    const x = ev.clientX - left - (w / 2) * (w > h ? h / w : 1);
-    const y = ev.clientY - top - (h / 2) * (h > w ? w / h : 1);
+    const x = ev.clientX - left - (w ) * (w > h ? h / w : 1);
+    const y = ev.clientY - top - (h ) * (h > w ? w / h : 1);
     const d = Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4;
     return d;
   };
@@ -66,7 +66,7 @@ export const DirectionAwareHover = ({
       onMouseEnter={handleMouseEnter}
       ref={ref}
       className={cn(
-        "md:h-96 w-60 h-60 md:w-96 bg-transparent rounded-lg overflow-hidden group/card relative",
+        "h-[800px] bg-transparent rounded-lg overflow-hidden group/card relative",
         className
       )}
     >
@@ -92,8 +92,8 @@ export const DirectionAwareHover = ({
                 "h-full w-full object-cover scale-[1.15]",
                 imageClassName
               )}
-              width="1000"
-              height="1000"
+              width="1400"
+              height="1400"
               src={imageUrl}
             />
           </motion.div>
