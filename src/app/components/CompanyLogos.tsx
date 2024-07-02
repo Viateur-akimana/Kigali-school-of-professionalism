@@ -8,6 +8,7 @@ import metaLogo from '../../../public/meta-logo.png';
 import googleLogo from '../../../public/google-logo.png';
 import microsoftLogo from '../../../public/microsoft-logo.png';
 
+
 interface CompanyLogosProps {}
 
 const CompanyLogos: React.FC<CompanyLogosProps> = () => {
@@ -87,6 +88,7 @@ const CompanyLogos: React.FC<CompanyLogosProps> = () => {
             </motion.div>
           ))}
         </Slider>
+        
       </div>
       <motion.div className="hidden md:flex mx-auto justify-center my-4 space-x-4" variants={containerVariants}>
         {logoData.map((logo, index) => (
