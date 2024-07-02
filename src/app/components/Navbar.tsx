@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import image3 from '../../../public/here.png';
 import ProgramsDropdown from './ProgramsDropDown';
 
-const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Navbar: React.FC = () => {
+    const [isScrolled, setIsScrolled] = useState<boolean>(false);
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,7 +30,7 @@ const Navbar = () => {
         }
     };
 
-    const navbarVariants = {
+    const navbarVariants: Variants = {
         hidden: { opacity: 0, y: -50 },
         visible: { 
             opacity: 1, 
@@ -42,7 +42,6 @@ const Navbar = () => {
             }
         }
     };
-
     const linkVariants = {
         hover: { 
             scale: 1.1, 
@@ -82,7 +81,9 @@ const Navbar = () => {
 
     return (
         <motion.nav 
-            className={`shadow-md ${isScrolled ? 'fixed top-0 left-0 right-0 bg-white z-10' : ''}`}
+            className={`shadow-md fixed top-0 left-0 right-0 z-50 ${
+                isScrolled ? 'bg-white bg-opacity-100' : 'bg-white bg-opacity-0'
+            }`}
             initial="hidden"
             animate="visible"
             variants={navbarVariants}
@@ -99,7 +100,7 @@ const Navbar = () => {
                             {['Home', 'Jobs', 'Industries', 'About'].map((item, index) => (
                                 <motion.div key={index} variants={linkVariants} whileHover="hover">
                                     <Link 
-                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : '#'} 
+                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : item === 'Jobs' ? '/jobs' : '#'} 
                                         className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium"
                                         onClick={() => item === 'Jobs' ? handleScroll('jobs') : item === 'Industries' ? handleScroll('service') : null}
                                     >

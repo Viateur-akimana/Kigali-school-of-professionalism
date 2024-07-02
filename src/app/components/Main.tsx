@@ -69,7 +69,7 @@ export default function Home() {
 
   return (
     <motion.div 
-      className="container mx-auto px-4 border-t-2"
+      className="container mx-auto  border-t-2"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

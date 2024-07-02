@@ -32,8 +32,8 @@ const JobPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-3xl text-blue-700 font-bold m-10 text-center">Job Listings</h1>
+    <div className="container mx-auto mt-40 px-4">
+      <h1 className="text-3xl text-blue-700 font-bold mt-10 text-center">Job Listings</h1>
       <div className="flex justify-center">
         <div className="flex items-center my-4">
           <select

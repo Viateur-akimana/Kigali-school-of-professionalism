@@ -22,7 +22,7 @@ export const DirectionAwareHover = ({
 
   const [direction, setDirection] = useState<
     "top" | "bottom" | "left" | "right" | string
-  >("left");
+  >("initial");
 
   const handleMouseEnter = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -50,6 +50,11 @@ export const DirectionAwareHover = ({
     }
   };
 
+  const handleMouseLeave = () => {
+    setDirection("initial");
+  };
+
+
   const getDirection = (
     ev: React.MouseEvent<HTMLDivElement, MouseEvent>,
     obj: HTMLElement
@@ -64,9 +69,10 @@ export const DirectionAwareHover = ({
   return (
     <motion.div
       onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       ref={ref}
       className={cn(
-        "h-[800px] bg-transparent rounded-lg overflow-hidden group/card relative",
+        "md:h-[700px]  bg-transparent rounded-lg overflow-hidden group/card relative",
         className
       )}
     >
@@ -74,7 +80,7 @@ export const DirectionAwareHover = ({
         <motion.div
           className="relative h-full w-full"
           initial="initial"
-          whileHover={direction}
+          animate={direction}
           exit="exit"
         >
           <motion.div className="group-hover/card:block hidden absolute inset-0 w-full h-full bg-black/40 z-10 transition duration-500" />
@@ -85,7 +91,7 @@ export const DirectionAwareHover = ({
               duration: 0.2,
               ease: "easeOut",
             }}
-          >
+          > 
             <Image
               alt="image"
               className={cn(
@@ -143,12 +149,12 @@ const textVariants = {
   initial: {
     y: 0,
     x: 0,
-    opacity: 0,
+    opacity: 1,
   },
   exit: {
     y: 0,
     x: 0,
-    opacity: 0,
+    opacity: 1,
   },
   top: {
     y: -20,

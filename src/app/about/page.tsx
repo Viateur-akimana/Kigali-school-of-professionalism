@@ -5,10 +5,10 @@ import Image from 'next/image'
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mt-10">
 
       <div className="text-center mb-10 border-b-2">
-        <h1 className="text-3xl flex mx-auto justify-center text-blue-600 font-bold">Who we are?</h1>
+        <h1 className="text-3xl flex mx-auto justify-center text-blue-600 font-bold mt-10">Who we are?</h1>
         <p className="mb-10 text-gray-700 mx-12 my-6 text-xl">
           IT Solutions Group is a pioneering facilitator entity dedicated to empowering
           Students from technology schools to lead the country s tech revolution in alignment
