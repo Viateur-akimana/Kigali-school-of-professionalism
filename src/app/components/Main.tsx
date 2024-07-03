@@ -2,9 +2,10 @@ import Head from 'next/head';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ServiceSection from '../components/ServiceSection';
 import CompanyLogos from './CompanyLogos';
-import Testimonials from '../components/Testimonials';
+// import Testimonials from '../components/Testimonials';
 import { FaCloud, FaDesktop, FaShieldAlt, FaRobot, FaPenNib, FaBriefcase } from 'react-icons/fa';
 import Application from './Application';
+import MovingCards from './MovingCards';
 
 const services = [
   {
@@ -126,7 +127,7 @@ export default function Home() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5 }}
       >
-        <Testimonials />
+        <MovingCards />
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
