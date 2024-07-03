@@ -4,14 +4,12 @@ import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import metaLogo from '../../../public/meta-logo.png';
-import googleLogo from '../../../public/google-logo.png';
-import microsoftLogo from '../../../public/microsoft-logo.png';
+import {logoData} from "../utils/data"
 
 
 interface CompanyLogosProps {}
 
-const CompanyLogos: React.FC<CompanyLogosProps> = () => {
+const Partners: React.FC<CompanyLogosProps> = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -57,12 +55,7 @@ const CompanyLogos: React.FC<CompanyLogosProps> = () => {
     }
   };
 
-  const logoData = [
-    { src: metaLogo, alt: "Meta", color: "text-blue-600" },
-    { src: googleLogo, alt: "Google", color: "text-yellow-500" },
-    { src: microsoftLogo, alt: "Microsoft", color: "text-blue-500" },
-  ];
-
+ 
   return (
     <motion.div 
       className="border-t-2"
@@ -116,4 +109,4 @@ const CompanyLogos: React.FC<CompanyLogosProps> = () => {
   );
 };
 
-export default CompanyLogos;
+export default Partners;

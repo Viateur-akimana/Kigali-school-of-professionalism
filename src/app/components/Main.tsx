@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ServiceSection from '../components/ServiceSection';
-import CompanyLogos from './CompanyLogos';
+import CompanyLogos from './Partners';
 // import Testimonials from '../components/Testimonials';
 import { FaCloud, FaDesktop, FaShieldAlt, FaRobot, FaPenNib, FaBriefcase } from 'react-icons/fa';
 import Application from './Application';

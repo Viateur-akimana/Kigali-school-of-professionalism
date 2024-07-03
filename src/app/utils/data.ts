@@ -1,3 +1,22 @@
+import mku from '../../../public/mku.jpeg';
+import cybrary from '../../../public/cybrary.png';
+import ensign from '../../../public/ensign.png';
+import cmu from "../../../public/cmu.jpeg"
+import isc2 from "../../../public/isc2.png"
+
+
+
+
+export const logoData = [
+  { src: mku, alt: "Mount Kenya", color: "text-blue-600" },
+  { src: cybrary, alt: "Cybrary", color: "text-yellow-500" },
+  { src: ensign, alt: "Ensign college", color: "text-green-500" },
+  { src: cmu, alt: "Carnegie Mellon University", color: "text-red-500" },
+  { src: isc2, alt: "ISC2", color: "text-green-700" },
+
+];
+
+
 export const testimonials = [
     {
       name: 'Murenzi ALex',
