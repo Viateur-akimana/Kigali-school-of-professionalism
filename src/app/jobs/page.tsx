@@ -1,5 +1,7 @@
-'use client';
+"use client"
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface JobListing {
   title: string;
@@ -58,7 +60,7 @@ const JobPage: React.FC = () => {
             <option value="Site">Site</option>
           </select>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
             onClick={handleSearch}
           >
             Search Jobs
@@ -70,22 +72,32 @@ const JobPage: React.FC = () => {
       </p>
       <div>
         {(filteredListings.length > 0 ? filteredListings : jobListings).map((job, index) => (
-          <div key={index} className="border rounded p-4 mb-4 flex justify-between items-center">
+          <motion.div
+            key={index}
+            className="border rounded p-4 mb-4 flex justify-between items-center hover:shadow-lg"
+            whileHover={{ scale: 1.03 }}
+          >
             <div className="space-y-4">
-              <h2 className="text-3xl text-gray">{job.title}</h2>
-              <p className='text-blue-700'>{job.location}</p>
+              <h2 className="text-3xl text-gray-800">{job.title}</h2>
+              <p className="text-blue-700">{job.location}</p>
               <p>
                 Job Type: {job.jobType} | Workspace: {job.workspace}
               </p>
             </div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              View Job
-            </button>
-          </div>
+            <Link href={`/job/${index}`} passHref>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+              >
+                View Job
+              </motion.button>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </div>
-  );  
+  );
 };
 
 export default JobPage;

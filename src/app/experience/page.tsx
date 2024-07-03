@@ -7,6 +7,7 @@ import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import experienceImage from '../../../public/experience.jpg';
 
+
 const Experience: React.FC = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -135,8 +136,7 @@ const Experience: React.FC = () => {
           >
             Join our experience program and take your skills to the next level. Whether you are interested in technology, business, or creative fields, we have opportunities for you to learn, grow, and succeed. Apply now and start your journey!
           </motion.p>
-          <Link href="https://forms.office.com/pages/responsepage.aspx?id=SkBXWhK0KUKNZzA_2mwSSwskkQHjChNOrnrVmzogwhRUMEhFQjE4RkFaRVJRNUdIN0VLMVIxWThGQS4u" passHref legacyBehavior>
-            <a target="_blank" rel="noopener noreferrer">
+          <Link href="https://forms.office.com/pages/responsepage.aspx?id=SkBXWhK0KUKNZzA_2mwSSwskkQHjChNOrnrVmzogwhRUMEhFQjE4RkFaRVJRNUdIN0VLMVIxWThGQS4u" passHref legacyBehavior target="_blank" rel="noopener noreferrer">
               <motion.button 
                 whileHover={{ scale: 1.1, backgroundColor: "#1E40AF" }}
                 whileTap={{ scale: 0.9 }}
@@ -145,7 +145,6 @@ const Experience: React.FC = () => {
               >
                 Register for experience
               </motion.button>
-            </a>
           </Link>
         </motion.div>
       </motion.div>
