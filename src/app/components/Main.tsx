@@ -5,7 +5,7 @@ import CompanyLogos from './CompanyLogos';
 // import Testimonials from '../components/Testimonials';
 import { FaCloud, FaDesktop, FaShieldAlt, FaRobot, FaPenNib, FaBriefcase } from 'react-icons/fa';
 import Application from './Application';
-import MovingCards from './MovingCards';
+import MovingCards from './Testimonials';
 
 const services = [
   {
