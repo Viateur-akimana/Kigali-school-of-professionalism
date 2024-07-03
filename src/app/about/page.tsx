@@ -12,7 +12,6 @@ const AboutPage: React.FC = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Adjust the threshold as needed
       const threshold = windowHeight * 0.7;
 
       if (scrollY > threshold) {
@@ -20,10 +19,9 @@ const AboutPage: React.FC = () => {
       }
     };
 
-    // Attach scroll event listener
     window.addEventListener('scroll', handleScroll);
 
-    // Clean up event listener
+ 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [controls]);
 
@@ -88,8 +86,9 @@ const AboutPage: React.FC = () => {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ type: 'spring', stiffness: 100 }}
+          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
         >
-          <div className="right-20 top-0">
+          <div className="right-20 top-0 overflow-hidden rounded-lg shadow-lg">
             <Image src={image1} alt="Image 1" width={500} height={500} />
           </div>
         </motion.div>
@@ -120,6 +119,8 @@ const AboutPage: React.FC = () => {
             transition={{ delay: 0.4 }}
           >
             Our vision at IT Solutions Group is to democratize access to technology for all Rwandans, creating an inclusive space where everyone can benefit and thrive. We strive to bridge the digital divide by empowering individuals and communities through technology, fostering innovation, and unlocking sustainable growth and prosperity opportunities.
+
+            We envision a future where every Rwandan has access to cutting-edge technology education and resources, enabling them to participate fully in the global digital economy. By championing digital literacy and technological innovation, we aim to position Rwanda as a leader in technology and digital transformation across Africa and beyond.
           </motion.p>
         </motion.div>
       </motion.div>
