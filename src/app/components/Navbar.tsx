@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
                             {['Home', 'Jobs', 'Industries', 'About'].map((item, index) => (
                                 <motion.div key={index} variants={linkVariants} whileHover="hover">
                                     <Link 
-                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : item === 'Jobs' ? '/jobs' : '#'} 
+                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : item === 'Jobs' ? '/jobs' : item === 'Industries' ? '/industries' : '#'} 
                                         className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium"
                                         onClick={() => item === 'Jobs' ? handleScroll('jobs') : item === 'Industries' ? handleScroll('service') : null}
                                     >
