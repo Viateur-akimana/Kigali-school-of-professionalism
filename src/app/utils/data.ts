@@ -3,12 +3,7 @@ import cybrary from '../../../public/cybrary.png';
 import ensign from '../../../public/ensign.png';
 import cmu from "../../../public/cmu.jpeg"
 import isc2 from "../../../public/isc2.png"
-import education from '../../../public/education.jpg';
-import tourism from '../../../public/tourism.jpg';
-import transportation from '../../../public/transportation.jpg';
-import media from '../../../public/media.jpg';
-import nonprofit from '../../../public/nonprofit.jpg';
-import retail from '../../../public/retails.jpg';
+
 
 
 
@@ -49,14 +44,14 @@ export const testimonials = [
   
 
   export interface Industry {
-    icon: StaticImageData;
+    icon: string;
     title: string;
     features: string[];
   }
   
   export const industries: Industry[] = [
     {
-      icon: education,
+      icon: "/education.jpg",
       title: "IT Education sector",
       features: [
         "Develop educational apps and online learning platforms",
@@ -67,7 +62,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: tourism,
+      icon: "/tourism.jpg",
       title: "Tourism and Hospitality Industry",
       features: [
         "Develop online booking platforms for hotels and tour operators",
@@ -78,7 +73,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: transportation,
+      icon: "/transportation.jpg",
       title: "Transportation and Logistics Industry",
       features: [
         "Develop GPS tracking systems for fleet management",
@@ -89,7 +84,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: media,
+      icon: "/media.jpg",
       title: "Media and Entertainment Industry",
       features: [
         "Develop content management systems for media organizations",
@@ -100,7 +95,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: nonprofit,
+      icon: "/nonprofit.jpg",
       title: "Nonprofit Organizations",
       features: [
         "Develop donor management systems for fundraising",
@@ -111,7 +106,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: retail,
+      icon: "/retail.jpg",
       title: "Retail and E-commerce Industry",
       features: [
         "Develop e-commerce platforms for online sales",
