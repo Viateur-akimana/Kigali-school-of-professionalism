@@ -117,3 +117,47 @@ export const testimonials = [
       ]
     }
   ];
+
+
+  export interface Job {
+    id: string;
+    title: string;
+    company: string;
+    date: string;
+    description: string;
+    jobType: 'Part-time' | 'Full-time' | 'Freelance' | 'Hybrid';
+    location: string;
+  }
+  
+  const jobs: Job[] = [
+    {
+      id: '1',
+      title: 'Frontend Developer',
+      company: 'Tech Company',
+      date: '2023-06-12',
+      description: 'Develop and maintain web applications using React and TypeScript.',
+      jobType: 'Full-time',
+      location: 'Kigali, Rwanda'
+    },
+    {
+      id: '2',
+      title: 'Backend Developer',
+      company: 'Another Tech Company',
+      date: '2023-06-14',
+      description: 'Build and optimize server-side logic and databases.',
+      jobType: 'Part-time',
+      location: 'Remote'
+    },
+    {
+      id: '3',
+      title: 'Full Stack Developer',
+      company: 'Startup Inc.',
+      date: '2023-06-16',
+      description: 'Work on both frontend and backend parts of the web application.',
+      jobType: 'Freelance',
+      location: 'Nairobi, Kenya'
+    },
+  ];
+  
+  export default jobs;
+  

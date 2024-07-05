@@ -17,12 +17,10 @@ import {
   }
   
   const JobsTable = ({ limit, title }: JobsTableProps) => {
-    // Sort jobs in descending order based on date
     const sortedJobs: Job[] = [...jobs].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
   
-    // Filter jobs to limit
     const filteredJobs = limit ? sortedJobs.slice(0, limit) : sortedJobs;
   
     return (
@@ -33,16 +31,22 @@ import {
           <TableHeader>
             <TableRow>
               <TableHead>Title</TableHead>
-              <TableHead className='hidden md:table-cell'>Company</TableHead>
+              <TableHead>Company</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Location</TableHead>
               <TableHead className='hidden md:table-cell text-right'>Date</TableHead>
-              <TableHead>View</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredJobs.map((job) => (
               <TableRow key={job.id}>
                 <TableCell>{job.title}</TableCell>
-                <TableCell className='hidden md:table-cell'>{job.company}</TableCell>
+                <TableCell>{job.company}</TableCell>
+                <TableCell>{job.description}</TableCell>
+                <TableCell>{job.jobType}</TableCell>
+                <TableCell>{job.location}</TableCell>
                 <TableCell className='text-right hidden md:table-cell'>{job.date}</TableCell>
                 <TableCell>
                   <Link href={`/jobs/edit/${job.id}`}>
