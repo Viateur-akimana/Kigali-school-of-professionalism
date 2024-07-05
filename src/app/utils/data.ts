@@ -3,6 +3,12 @@ import cybrary from '../../../public/cybrary.png';
 import ensign from '../../../public/ensign.png';
 import cmu from "../../../public/cmu.jpeg"
 import isc2 from "../../../public/isc2.png"
+import education from '../../../public/education.jpg';
+import tourism from '../../../public/tourism.jpg';
+import transportation from '../../../public/transportation.jpg';
+import media from '../../../public/media.jpg';
+import nonprofit from '../../../public/nonprofit.jpg';
+import retail from '../../../public/retails.jpg';
 
 
 
@@ -43,14 +49,14 @@ export const testimonials = [
   
 
   export interface Industry {
-    icon: string;
+    icon: StaticImageData;
     title: string;
     features: string[];
   }
   
   export const industries: Industry[] = [
     {
-      icon: "/icons/it-education.svg",
+      icon: education,
       title: "IT Education sector",
       features: [
         "Develop educational apps and online learning platforms",
@@ -61,7 +67,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: "/icons/tourism-hospitality.svg",
+      icon: tourism,
       title: "Tourism and Hospitality Industry",
       features: [
         "Develop online booking platforms for hotels and tour operators",
@@ -72,7 +78,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: "/icons/transportation-logistics.svg",
+      icon: transportation,
       title: "Transportation and Logistics Industry",
       features: [
         "Develop GPS tracking systems for fleet management",
@@ -83,7 +89,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: "/icons/media-entertainment.svg",
+      icon: media,
       title: "Media and Entertainment Industry",
       features: [
         "Develop content management systems for media organizations",
@@ -94,7 +100,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: "/icons/nonprofit.svg",
+      icon: nonprofit,
       title: "Nonprofit Organizations",
       features: [
         "Develop donor management systems for fundraising",
@@ -105,7 +111,7 @@ export const testimonials = [
       ]
     },
     {
-      icon: "/icons/retail-ecommerce.svg",
+      icon: retail,
       title: "Retail and E-commerce Industry",
       features: [
         "Develop e-commerce platforms for online sales",
