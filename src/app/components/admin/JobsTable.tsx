@@ -8,7 +8,7 @@ import {
   TableCaption,
 } from '../ui/table';
 import Link from 'next/link';
-import jobs from '../../data/jobs';
+import jobs from '../../data/jobszz';
 import { Job } from '../../types/jobs';
 
 interface JobsTableProps {
