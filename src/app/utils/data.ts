@@ -3,7 +3,7 @@ import cybrary from '../../../public/cybrary.png';
 import ensign from '../../../public/ensign.png';
 import cmu from "../../../public/cmu.jpeg"
 import isc2 from "../../../public/isc2.png"
-
+import jobs from "../types/jobs"
 
 
 
@@ -119,17 +119,8 @@ export const testimonials = [
   ];
 
 
-  export interface Job {
-    id: string;
-    title: string;
-    company: string;
-    date: string;
-    description: string;
-    jobType: 'Part-time' | 'Full-time' | 'Freelance' | 'Hybrid';
-    location: string;
-  }
   
-  const jobs: Job[] = [
+  const job : jobs[] = [
     {
       id: '1',
       title: 'Frontend Developer',
@@ -159,5 +150,5 @@ export const testimonials = [
     },
   ];
   
-  export default jobs;
+  export default job;
   
