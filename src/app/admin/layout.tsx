@@ -17,10 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="admin-layout">
+        <div>
           <Navbar />
-          <div className="admin-content">
+          <div className="flex">
+            <div className="hidden md:block h-[100vh] w-[300px]">
             <Sidebar />
+            </div>
+        
             <main>{children}</main>
           </div>
         </div>
