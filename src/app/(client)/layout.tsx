@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
-import './globals.css'
+import '../globals.css'
 
 
 interface LayoutProps {

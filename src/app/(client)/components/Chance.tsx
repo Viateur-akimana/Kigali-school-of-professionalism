@@ -1,7 +1,7 @@
 import Card from './Card';
-import experienceImg from "../../../public/experience.png";
-import internshipImg from "../../../public/internship.png";
-import opportunitiesImg from "../../../public/opportunity.png";
+import experienceImg from "../../../../public/experience.png";
+import internshipImg from "../../../../public/internship.png";
+import opportunitiesImg from "../../../../public/opportunity.png";
 
 const Chance: React.FC = () => {
     return (

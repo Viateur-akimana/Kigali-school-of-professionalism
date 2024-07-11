@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import image3 from '../../../public/here.png';
+import image3 from '../../../../public/here.png';
 import ProgramsDropdown from './ProgramsDropDown';
 
 const Navbar: React.FC = () => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import heroImage from '../../../public/who.jpg';
-import educationIcon from '../../../public/Vectors.png';
-import certificationIcon from '../../../public/Vector.png';
-import experienceIcon from '../../../public/Vector.png';
+import heroImage from '../../../../public/who.jpg';
+import educationIcon from '../../../../public/Vectors.png';
+import certificationIcon from '../../../../public/Vector.png';
+import experienceIcon from '../../../../public/Vector.png';
 
 const Choose = () => {
   const containerVariants = {

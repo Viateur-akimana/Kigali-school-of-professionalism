@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { DirectionAwareHover } from "../ui/direction-aware-hover";
-import image1 from "../../../public/hero-image.png";
+import image1 from "../../../../public/hero-image.png";
 
 const Introduction: React.FC = () => {
     const containerVariants: Variants = {
