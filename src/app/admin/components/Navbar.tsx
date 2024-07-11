@@ -3,6 +3,14 @@ import logo from '../../../../public/Vector.png'
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from 'next/link';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 
 const Navbar = () => {
@@ -15,10 +23,23 @@ const Navbar = () => {
       alt='admin logo'
       />
       </Link>
-      <Avatar>
+<DropdownMenu>
+  <DropdownMenuTrigger>      <Avatar>
   <AvatarImage src="https://github.com/shadcn.png" />
   <AvatarFallback className='Text-black' >AV</AvatarFallback>
-</Avatar>
+</Avatar></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>
+      <Link href={'/profile'}>Profile</Link>
+    </DropdownMenuItem>
+    <DropdownMenuItem>
+      <Link href={'/auth'}>Logout</Link>
+    </DropdownMenuItem>
+  
+  </DropdownMenuContent>
+</DropdownMenu>
 
     </div>
   )
