@@ -3,7 +3,7 @@ import cybrary from '../../../public/cybrary.png';
 import ensign from '../../../public/ensign.png';
 import cmu from "../../../public/cmu.jpeg"
 import isc2 from "../../../public/isc2.png"
-import jobs from "../(client)/types/jobs"
+import jobs from "../admin/types/jobs"
 import Industry from '../(client)/types/industries';
 
 
