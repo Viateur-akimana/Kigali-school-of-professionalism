@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import image1 from '../../../public/intern.jpg';
+import image1 from '../../../../public/intern.jpg';
 
 const Internship: React.FC = () => {
   const controls = useAnimation();

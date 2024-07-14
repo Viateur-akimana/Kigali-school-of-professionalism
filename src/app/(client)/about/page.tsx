@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import Image from 'next/image';
-import image1 from '../../../public/mission.jpg';
+import image1 from '../../../../public/mission.jpg';
 
 const AboutPage: React.FC = () => {
   const controls = useAnimation();

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import image1 from '../../../public/mentor.jpg';
+import image1 from '../../../../public/mentor.jpg';
 
 const Mentorship: React.FC = () => {
   const controls = useAnimation();
@@ -124,8 +124,8 @@ const Mentorship: React.FC = () => {
           <motion.p className="mb-4 text-gray-600 mx-6 my-6">
             Join our mentorship program and unlock the potential to grow personally and professionally. Tailored for individuals seeking guidance and support, our program provides the opportunity to connect with experienced mentors who can help you reach your goals. Do not miss out on this chance to elevate your skills and expand your network.
           </motion.p>
-          <Link href="https://forms.office.com/pages/responsepage.aspx?id=SkBXWhK0KUKNZzA_2mwSSwskkQHjChNOrnrVmzogwhRUMEhFQjE4RkFaRVJRNUdIN0VLMVIxWThGQS4u" passHref legacyBehavior>
-            <a target="_blank" rel="noopener noreferrer">
+          <Link href="https://forms.office.com/pages/responsepage.aspx?id=SkBXWhK0KUKNZzA_2mwSSwskkQHjChNOrnrVmzogwhRUMEhFQjE4RkFaRVJRNUdIN0VLMVIxWThGQS4u" passHref legacyBehavior target="_blank" rel="noopener noreferrer">
+            
               <motion.button 
                 whileHover={{ scale: 1.1, backgroundColor: "#1E40AF" }}
                 whileTap={{ scale: 0.9 }}
@@ -134,7 +134,7 @@ const Mentorship: React.FC = () => {
               >
                 Register as a Mentee
               </motion.button>
-            </a>
+          
           </Link>
         </motion.div>
       </motion.div>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import experienceImage from '../../../public/experience.jpg';
+import experienceImage from '../../../../public/experience.jpg';
 
 
 const Experience: React.FC = () => {

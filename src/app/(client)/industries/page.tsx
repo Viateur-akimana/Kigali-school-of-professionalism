@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
-import { industries, Industry } from '../utils/data';
+import { industries } from '../../utils/data'
 import Image from "next/image";
 import { motion } from 'framer-motion';
+import Industry from '../types/industries'
 
 const IndustryCard: React.FC<Industry> = ({ icon, title, features }) => {
   return (
