@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Command,
   CommandDialog,
@@ -9,8 +9,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@/components/ui/command"
-
+} from "@/components/ui/command";
 import {
   LayoutDashboard,
   Newspaper,
@@ -20,21 +19,27 @@ import {
   User,
 } from 'lucide-react';
 import Link from 'next/link';
-const Sidebar = () => {
+
+const Sidebar: React.FC = () => {
   return (
-    <div>
-      <Command className='bg-secondary h-[100vh]' >
+    <div className='h-full'>
+      <Command className='bg-secondary h-full'>
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
-            <CommandItem><LayoutDashboard className='mr-2 h-4 w-4' />
-              <Link href='/'>Dashboard</Link></CommandItem>
-
-            <CommandItem>    <Newspaper className='mr-2 h-4 w-4' />
-              <Link href='/posts'>Jobs</Link></CommandItem>
-            <CommandItem> <Folders className='mr-2 h-4 w-4' />
-              <Link href='#'>Categories</Link></CommandItem>
+            <CommandItem>
+              <LayoutDashboard className='mr-2 h-4 w-4' />
+              <Link href='/'>Dashboard</Link>
+            </CommandItem>
+            <CommandItem>
+              <Newspaper className='mr-2 h-4 w-4' />
+              <Link href='/posts'>Jobs</Link>
+            </CommandItem>
+            <CommandItem>
+              <Folders className='mr-2 h-4 w-4' />
+              <Link href='#'>Categories</Link>
+            </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Settings">
@@ -45,7 +50,7 @@ const Sidebar = () => {
             </CommandItem>
             <CommandItem>
               <CreditCard className='mr-2 h-4 w-4' />
-              <span>Billing</span>
+              <span>Comments</span>
               <CommandShortcut>⌘B</CommandShortcut>
             </CommandItem>
             <CommandItem>
@@ -56,9 +61,8 @@ const Sidebar = () => {
           </CommandGroup>
         </CommandList>
       </Command>
-
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

@@ -131,7 +131,7 @@ export const testimonials = [
       date: '2023-06-14',
       description: 'Build and optimize server-side logic and databases.',
       jobType: 'Part-time',
-      location: 'Remote'
+      location: 'Kampala, Uganda'
     },
     {
       id: '3',
