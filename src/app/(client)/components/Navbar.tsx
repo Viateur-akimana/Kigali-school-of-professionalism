@@ -97,10 +97,10 @@ const Navbar: React.FC = () => {
                     </div>
                     <div className="hidden md:flex mx-auto justify-center">
                         <div className="mx-10 flex items-baseline space-x-12">
-                            {['Home', 'Jobs', 'Industries', 'About'].map((item, index) => (
+                            {['Home', 'Jobs', 'Industries', 'About','Courses'].map((item, index) => (
                                 <motion.div key={index} variants={linkVariants} whileHover="hover">
                                     <Link 
-                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : item === 'Jobs' ? '/jobs' : item === 'Industries' ? '/industries' : '#'} 
+                                        href={item === 'Home' ? '/' : item === 'About' ? '/about' : item === 'Jobs' ? '/jobs' : item === 'Industries' ? '/industries' : item === 'Courses' ? '/courses' :  '#'} 
                                         className="text-black hover:text-gray-900 px-3 py-2 rounded-md text-md font-medium"
                                         onClick={() => item === 'Jobs' ? handleScroll('jobs') : item === 'Industries' ? handleScroll('service') : null}
                                     >

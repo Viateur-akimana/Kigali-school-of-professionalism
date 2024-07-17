@@ -1,17 +1,18 @@
-import React from 'react';
-import Card from './Card';
+  import React from 'react';
+  import Card from './Card';
 
-const Home: React.FC = () => {
+  
+  const Home: React.FC = () => {
+
   const courses = [
     {
       title: 'Front and backend engineering',
-      duration: 'Self-Paced | 24 Weeks',
+      duration: 'Self-Paced | 24 Weeks',  
       status: 'Active',
       visibility: 'Public',
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 7, 2024',
-      imageUrl: '/image1.png',
     },
     {
       title: 'Strategic Business Management',
@@ -21,7 +22,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 7, 2024',
-      imageUrl: '/image2.png',
     },
     {
       title: 'Professional Financial Management and Planning',
@@ -31,7 +31,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 7, 2024',
-      imageUrl: '/image3.png',
     },
     {
       title: 'Advanced Risk Assessment and Management (ARAM)',
@@ -41,7 +40,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 7, 2024',
-      imageUrl: '/image4.png',
     },
     {
       title: 'Accounting Systems and QuickBooks',
@@ -51,7 +49,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 7, 2024',
-      imageUrl: '/image5.png',
     },
     {
       title: 'Advanced Statistical Analysis (ASA)',
@@ -61,7 +58,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 7, 2024',
-      imageUrl: '/image6.png',
     },
     {
       title: 'Database Administration and Design',
@@ -71,7 +67,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 6, 2024',
-      imageUrl: '/image7.png',
     },
     {
       title: 'Professional Web design(UX/UI)',
@@ -81,7 +76,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: '$10.00',
       createdOn: 'Created on Jul 6, 2024',
-      imageUrl: '/image8.png',
     },
     {
       title: 'Cloud Server Administration',
@@ -91,7 +85,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: 'Free',
       createdOn: 'Created on Jun 22, 2024',
-      imageUrl: '/image9.png',
     },
     {
       title: 'Security Engineering Certificate + 2 years of Experience',
@@ -101,7 +94,6 @@ const Home: React.FC = () => {
       enrollments: 1,
       price: '$10.00',
       createdOn: 'Created on Jun 21, 2024',
-      imageUrl: '/image10.png',
     },
     {
       title: 'Project Management Professional (PMP) Certificate',
@@ -111,7 +103,6 @@ const Home: React.FC = () => {
       enrollments: 0,
       price: 'Free',
       createdOn: 'Created on Jun 21, 2024',
-      imageUrl: '/image11.png',
     },
     {
       title: 'IT For Professionals',
@@ -121,7 +112,6 @@ const Home: React.FC = () => {
       enrollments: 10,
       price: '$10.00',
       createdOn: 'Created on Jun 21, 2024',
-      imageUrl: '/image12.png',
     },
     {
       title: '7 Steps to Becoming an SEO Expert 📈',
@@ -131,7 +121,7 @@ const Home: React.FC = () => {
       enrollments: 1,
       price: '$10.00',
       createdOn: 'Created on Jun 11, 2024',
-      imageUrl: '/image13.png',
+
     },
     {
       title: 'Productivity Crash Course',
@@ -141,7 +131,6 @@ const Home: React.FC = () => {
       enrollments: 2,
       price: 'Free',
       createdOn: 'Created on Mar 20, 2024',
-      imageUrl: '/image14.png',
     },
     {
       title: 'PROFESSIONAL DEVELOPMENT',
@@ -151,29 +140,28 @@ const Home: React.FC = () => {
       enrollments: 14,
       price: '$10.00',
       createdOn: 'Created on Mar 20, 2024',
-      imageUrl: '/image15.png',
     },
   ];
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-wrap justify-center">
-        {courses.map((course, index) => (
-          <Card
-            key={index}
-            title={course.title}
-            duration={course.duration}
-            status={course.status}
-            visibility={course.visibility}
-            enrollments={course.enrollments}
-            price={course.price}
-            createdOn={course.createdOn}
-            imageUrl={course.imageUrl}
-          />
-        ))}
+  
+    return (
+      <div className="container mx-auto mt-20 px-4 py-8">
+        <h1 className="text-3xl font-bold text-center mb-8">Available Courses</h1>
+        <div className="flex flex-wrap justify-center">
+          {courses.map((course, index) => (
+            <Card
+              key={index}
+              title={course.title}
+              duration={course.duration}
+              status={course.status}
+              visibility={course.visibility}
+              enrollments={course.enrollments}
+              price={course.price}
+              createdOn={course.createdOn}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default Home;
+    );
+  };
+  
+  export default Home;
