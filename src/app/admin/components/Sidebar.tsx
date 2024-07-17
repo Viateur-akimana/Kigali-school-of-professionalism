@@ -40,6 +40,10 @@ const Sidebar: React.FC = () => {
               <Folders className='mr-2 h-4 w-4' />
               <Link href='#'>Categories</Link>
             </CommandItem>
+            <CommandItem>
+              <Folders className='mr-2 h-4 w-4' />
+              <Link href='/courses'>Courses</Link>
+            </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Settings">

@@ -8,6 +8,7 @@ const Dashboard: React.FC = () => {
       <DashboardCard title='Jobs' count={100} icon={<Newspaper size={62} />} />
       <DashboardCard title='Categories' count={200} icon={<Folders size={62} />} />
       <DashboardCard title='Users' count={900} icon={<User size={62} />} />
+      <DashboardCard title='Courses' count={900} icon={<User size={62} />} />
     </div>
   );
 }
