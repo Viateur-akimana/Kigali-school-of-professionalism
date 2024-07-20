@@ -11,6 +11,7 @@ import React from "react";
 import Link from "next/link";
 import jobs from "../../utils/data";
 import Job from "../types/jobs";
+import BackButton from "../components/BackButton";
 
 interface JobsTableProps {
   limit?: number;
@@ -20,9 +21,10 @@ interface JobsTableProps {
 const JobsTable = ({ limit, title }: JobsTableProps) => {
   return (
     <div className="mt-10">
+      <BackButton text="Go back" link="/"/>
       <h3 className="text-2xl mb-4 font-semibold">{title ? title : "Posts"}</h3>
       <Table>
-        <TableCaption>A list of recent posts</TableCaption>
+        <TableCaption>A list of recent jobs</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Title</TableHead>

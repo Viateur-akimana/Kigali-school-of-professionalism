@@ -52,9 +52,6 @@ const Card: React.FC<CardProps> = ({
           <span className="text-gray-800 dark:text-gray-200 text-lg font-semibold">
             {price}
           </span>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
-            Join
-          </button>
         </div>
       </div>
     </div>
