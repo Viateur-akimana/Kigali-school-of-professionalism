@@ -54,7 +54,7 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
                 {job.location}
               </TableCell>
               <TableCell>
-                <Link href={`/jobs/edit/`}>
+                <Link href={`/admin/jobs/edit/${job.id}`}>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs">
                     Edit
                   </button>
