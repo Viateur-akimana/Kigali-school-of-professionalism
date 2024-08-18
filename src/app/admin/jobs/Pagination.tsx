@@ -22,6 +22,9 @@ import {
             <PaginationLink href='#'>2</PaginationLink>
           </PaginationItem>
           <PaginationItem>
+            <PaginationLink href='#'>3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
           <PaginationItem>
@@ -32,4 +35,4 @@ import {
     );
   };
   
-  export default JobsPagination;
+  export default JobsPagination;  
