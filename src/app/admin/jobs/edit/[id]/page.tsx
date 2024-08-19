@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import BackButton from '../../../components/BackButton';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
@@ -11,9 +12,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import React from 'react'
+import React from 'react';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import jobs from '../../../../utils/data';
 import { useToast } from '@/components/ui/use-toast';
@@ -32,7 +32,7 @@ const formSchema = z.object({
     message: 'Description is required',
   }),
   date: z.string().min(1, {
-    message: 'Description is required',
+    message: 'Date is required',
   }),
 });
 
@@ -42,11 +42,10 @@ interface JobEditPageProps {
   };
 }
 
-
 const JobsEditPage = ({ params }: JobEditPageProps) => {
   const { toast } = useToast();
 
-  const job = jobs.find((job: { id: string; }) => job.id === params.id);
+  const job = jobs.find((job) => job.id === params.id);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -65,24 +64,25 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
       description: `Updated by ${job?.company} on ${job?.date}`,
     });
   };
+
   return (
     <>
-      <BackButton text='Back To Posts' link='/posts' />
-      <h3 className='text-2xl mb-4'>Edit Job </h3>
+      <BackButton text="Back To Posts" link="/posts" />
+      <h3 className="text-2xl mb-4">Edit Job</h3>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name='title'
+            name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-white'>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                   Title
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className='bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0'
-                    placeholder='Enter Title'
+                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    placeholder="Enter Title"
                     {...field}
                   />
                 </FormControl>
@@ -93,16 +93,16 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
 
           <FormField
             control={form.control}
-            name='company'
+            name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-white'>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                   Company
                 </FormLabel>
                 <FormControl>
-                  <Textarea
-                    className='bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0'
-                    placeholder='Enter Body'
+                  <Input
+                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    placeholder="Enter Company"
                     {...field}
                   />
                 </FormControl>
@@ -113,16 +113,16 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
 
           <FormField
             control={form.control}
-            name='location'
+            name="location"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-white'>
-                  location
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                  Location
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className='bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0'
-                    placeholder='Enter Author'
+                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    placeholder="Enter Location"
                     {...field}
                   />
                 </FormControl>
@@ -130,18 +130,19 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
-            name='date'
+            name="date"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-white'>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                   Date
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className='bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0'
-                    placeholder='Enter Date'
+                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    placeholder="Enter Date"
                     {...field}
                   />
                 </FormControl>
@@ -152,16 +153,16 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
 
           <FormField
             control={form.control}
-            name='description'
+            name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='uppercase text-xs font-bold text-zinc-500 dark:text-white'>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                   Description
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className='bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0'
-                    placeholder='Enter Date'
+                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    placeholder="Enter Description"
                     {...field}
                   />
                 </FormControl>
@@ -170,13 +171,13 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
             )}
           />
 
-          <Button className='w-full dark:bg-slate-800 dark:text-white'>
+          <Button className="w-full dark:bg-slate-800 dark:text-white">
             Update Job
           </Button>
         </form>
       </Form>
     </>
-  )
-}
+  );
+};
 
 export default JobsEditPage;
