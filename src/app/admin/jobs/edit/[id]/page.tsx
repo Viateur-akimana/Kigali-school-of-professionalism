@@ -67,7 +67,7 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
 
   return (
     <>
-      <BackButton text="Back To Posts" link="/posts" />
+      <BackButton text="Back To Jobs" link="/admin/jobs" />
       <h3 className="text-2xl mb-4">Edit Job</h3>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
