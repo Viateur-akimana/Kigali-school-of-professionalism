@@ -34,15 +34,15 @@ const Sidebar: React.FC = () => {
             </CommandItem>
             <CommandItem>
               <Newspaper className='mr-2 h-4 w-4' />
-              <Link href='/posts'>Jobs</Link>
+              <Link href='/admin/jobs'>Jobs</Link>
             </CommandItem>
             <CommandItem>
               <Folders className='mr-2 h-4 w-4' />
-              <Link href='#'>Categories</Link>
+              <Link href='/admin/categories'>Categories</Link>
             </CommandItem>
             <CommandItem>
               <Folders className='mr-2 h-4 w-4' />
-              <Link href='/courses'>Courses</Link>
+              <Link href='/admin/courses'>Courses</Link>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />

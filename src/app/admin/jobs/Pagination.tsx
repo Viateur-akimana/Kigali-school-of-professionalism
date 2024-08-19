@@ -35,4 +35,4 @@ import {
     );
   };
   
-  export default JobsPagination;  
+  export default JobsPagination;

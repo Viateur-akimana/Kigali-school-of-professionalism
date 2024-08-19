@@ -22,7 +22,7 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
   return (
     <div className="mt-10">
       <BackButton text="Go back" link="/"/>
-      <h3 className="text-2xl mb-4 font-semibold">{title ? title : "Posts"}</h3>
+      <h3 className="text-2xl mb-4 font-semibold">{title ? title : "Jobs"}</h3>
       <Table>
         <TableCaption>A list of recent jobs</TableCaption>
         <TableHeader>
