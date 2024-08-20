@@ -97,7 +97,7 @@ const Partners: React.FC<CompanyLogosProps> = () => {
           >
             <Image src={logo.src} alt={logo.alt} width={100} height={100} />
             <motion.span 
-              className={`ml-6 text-xl ${logo.color} px-8 font-bold`}
+              className={`ml-4 text-lg ${logo.color} px-7 font-bold`}
               whileHover={{ scale: 1.1 }}
             >
               {logo.alt}
