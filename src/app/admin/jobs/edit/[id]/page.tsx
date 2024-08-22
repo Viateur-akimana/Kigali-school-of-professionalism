@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import jobs from '../../../../utils/data';
 import { useToast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/router';
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -44,25 +45,35 @@ interface JobEditPageProps {
 
 const JobsEditPage = ({ params }: JobEditPageProps) => {
   const { toast } = useToast();
+  const router = useRouter();
 
   const job = jobs.find((job) => job.id === params.id);
+
+  if (!job) {
+    return <p>Job not found</p>;
+  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: job?.title || '',
-      company: job?.company || '',
-      location: job?.location || '',
-      description: job?.description || '',
-      date: job?.date || '',
+      title: job.title,
+      company: job.company,
+      location: job.location,
+      description: job.description,
+      date: job.date,
     },
   });
 
   const handleSubmit = (data: z.infer<typeof formSchema>) => {
+    // Perform your update logic here
+
     toast({
       title: 'Job has been updated successfully',
-      description: `Updated by ${job?.company} on ${job?.date}`,
+      description: `Updated by ${data.company} on ${data.date}`,
     });
+
+    // Optional: Redirect back to jobs list after submission
+    router.push('/admin/jobs');
   };
 
   return (
@@ -171,7 +182,7 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
             )}
           />
 
-          <Button className="w-full dark:bg-slate-800 dark:text-white">
+          <Button type="submit" className="w-full dark:bg-slate-800 dark:text-white">
             Update Job
           </Button>
         </form>
