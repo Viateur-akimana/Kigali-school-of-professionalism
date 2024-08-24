@@ -11,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ModeToggler from './ThemeToggler';
 
 const Navbar: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ const Navbar: React.FC = () => {
       <Link href='/'>
         <Image src={logo} width={40} alt='admin logo' />
       </Link>
-      <DropdownMenu>
+      <div className="flex items-center">
+        <ModeToggler/>
+        <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
@@ -36,6 +39,8 @@ const Navbar: React.FC = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      </div>
+      
     </div>
   );
 }

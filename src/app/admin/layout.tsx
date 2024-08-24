@@ -2,6 +2,8 @@ import Navbar from "./components/Navbar"
 import Sidebar from "./components/Sidebar"
 import { Inter } from 'next/font/google';
 import "../globals.css"
+import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "./components/ThemeProvider";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -17,6 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <ThemeProvider
+          attribute='class'
+          defaultTheme='light'
+          enableSystem={true}
+          storageKey='dashboard-theme'
+        >
         <div>
           <Navbar />
           <div className="flex">
@@ -27,6 +35,8 @@ export default function RootLayout({
             <main>{children}</main>
           </div>
         </div>
+        <Toaster/>
+        </ThemeProvider>
       </body>
     </html>
   )
