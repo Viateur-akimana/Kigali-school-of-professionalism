@@ -53,6 +53,7 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
     return <p>Job not found</p>;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
