@@ -1,12 +1,8 @@
-import AuthTabs from '@/app/(auth)/auth/AuthTabs'
-import React from 'react'
+import LoginForm from "./LoginForm";
+import React from 'react';
 
 const AuthPage = () => {
-  return (
-    <>
-    <AuthTabs/>
-    </>
-  )
-}
+  return <LoginForm />;
+};
 
-export default AuthPage
+export default AuthPage;

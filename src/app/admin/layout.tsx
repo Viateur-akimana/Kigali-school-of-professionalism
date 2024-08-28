@@ -1,43 +1,55 @@
+'use client';
+
 import Navbar from "./components/Navbar"
 import Sidebar from "./components/Sidebar"
-import { Inter } from 'next/font/google';
-import "../globals.css"
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "./components/ThemeProvider";
-const inter = Inter({ subsets: ['latin'] })
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export const metadata = {
-  title: 'ISG admin',
-  description: 'ISG admin dashboard',
-}
-
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "loading") return; // Do nothing while loading
+    if (!session) {
+      router.push('/auth'); // Redirect to login if not authenticated
+    } else if (!(session.user as any).isAdmin) {
+      router.push('/'); // Redirect to home if not an admin
+    }
+  }, [session, status, router]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>; // Or any loading component
+  }
+
+  if (!session || !(session.user as any).isAdmin) {
+    return null; // Render nothing while redirecting
+  }
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-      <ThemeProvider
-          attribute='class'
-          defaultTheme='light'
-          enableSystem={true}
-          storageKey='dashboard-theme'
-        >
-        <div>
-          <Navbar />
-          <div className="flex">
-            <div className="hidden md:block h-[100vh] w-[300px]">
+    <ThemeProvider
+      attribute='class'
+      defaultTheme='light'
+      enableSystem={true}
+      storageKey='dashboard-theme'
+    >
+      <div>
+        <Navbar />
+        <div className="flex">
+          <div className="hidden md:block h-[100vh] w-[300px]">
             <Sidebar />
-            </div>
-        
-            <main>{children}</main>
           </div>
+          <main>{children}</main>
         </div>
-        <Toaster/>
-        </ThemeProvider>
-      </body>
-    </html>
+      </div>
+      <Toaster/>
+    </ThemeProvider>
   )
 }
