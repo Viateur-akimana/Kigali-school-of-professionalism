@@ -1,8 +1,10 @@
-import React from 'react';
-import logo from '../../../../public/Vector.png';
-import Image from 'next/image';
+"use client";
+
+import React from "react";
+import logo from "../../../../public/Vector.png";
+import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Link from 'next/link';
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,38 +13,51 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ModeToggler from './ThemeToggler';
+import ModeToggler from "./ThemeToggler";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Navbar: React.FC = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
+    router.push("/auth"); // Redirect to the authentication page after sign-out
+  };
+
   return (
-    <div className='bg-primary dark:bg-slate-700 py-2 px-5 flex justify-between items-center text-white'>
-      <Link href='/'>
-        <Image src={logo} width={40} alt='admin logo' />
+    <div className="bg-primary dark:bg-slate-700 py-2 px-5 flex justify-between items-center text-white">
+      <Link href="/">
+        <Image src={logo} width={40} alt="admin logo" />
       </Link>
       <div className="flex items-center">
-        <ModeToggler/>
+        <ModeToggler />
         <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback className='text-black'>AV</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href={'/profile'}>Profile</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href={'/auth'}>Logout</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar>
+              <AvatarImage src={session?.user?.image || "https://github.com/shadcn.png"} />
+              <AvatarFallback className="text-black">
+                {session?.user?.name?.charAt(0).toUpperCase() || "A"}
+              </AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link href={"/profile"}>Profile</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <button onClick={handleSignOut} className="w-full text-left">
+                Logout
+              </button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
-      
     </div>
   );
-}
+};
 
 export default Navbar;

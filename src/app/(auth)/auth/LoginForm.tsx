@@ -1,8 +1,11 @@
+// src/app/(auth)/auth/LoginForm.tsx
 'use client';
 
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 import {
     Form,
     FormControl,
@@ -11,43 +14,39 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form';
-import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-    email: z.string().min(1, {
-        message: 'Email is required',
-    }).email({
-        message: 'Please provide a valid email',
-    }),
-    password: z.string().min(1, {
-        message: 'Password is required',
-    }),
+    email: z.string().email({ message: 'Please provide a valid email' }),
+    password: z.string().min(1, { message: 'Password is required' }),
 });
 
 const LoginForm = () => {
     const router = useRouter();
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            email: '',
-            password: '',
-        },
     });
 
-    const handleSubmit = (data: z.infer<typeof formSchema>) => {
-        router.push('/admin/jobs');
+    const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+        const result = await signIn("credentials", {
+            redirect: false,
+            email: data.email,
+            password: data.password,
+        });
+
+        if (result?.ok) {
+            router.push("/admin/dashboard");
+        } else {
+            alert("Invalid credentials");
+        }
     };
 
     return (
@@ -64,15 +63,9 @@ const LoginForm = () => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                                        Email
-                                    </FormLabel>
+                                    <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
-                                            placeholder="Enter Email"
-                                            {...field}
-                                        />
+                                        <Input placeholder="Enter Email" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -83,28 +76,18 @@ const LoginForm = () => {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                                        Password
-                                    </FormLabel>
+                                    <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            type="password"
-                                            className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
-                                            placeholder="Enter Password"
-                                            {...field}
-                                        />
+                                        <Input type="password" placeholder="Enter Password" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
-                        <Button type="submit" className='w-full'>Login</Button>
-
+                        <Button type="submit" className="w-full">Login</Button>
                     </form>
                 </Form>
             </CardContent>
-            <CardFooter />
         </Card>
     );
 };
