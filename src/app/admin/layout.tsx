@@ -17,20 +17,20 @@ export default function AdminLayout({
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "loading") return; // Do nothing while loading
+    if (status === "loading") return;
     if (!session) {
-      router.push('/auth'); // Redirect to login if not authenticated
+      router.push('/auth'); 
     } else if (!(session.user as any).isAdmin) {
-      router.push('/'); // Redirect to home if not an admin
+      router.push('/');
     }
   }, [session, status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>; // Or any loading component
+    return <div>Loading...</div>; 
   }
 
   if (!session || !(session.user as any).isAdmin) {
-    return null; // Render nothing while redirecting
+    return null;
   }
 
   return (

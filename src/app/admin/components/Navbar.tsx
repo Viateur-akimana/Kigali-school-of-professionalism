@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
-    router.push("/auth"); // Redirect to the authentication page after sign-out
+    router.push("/auth");
   };
 
   return (
