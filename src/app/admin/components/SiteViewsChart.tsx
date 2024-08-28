@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import {
   ChartConfig,
@@ -10,17 +12,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-
-const chartConfig = {
+const chartConfig: ChartConfig = {
   desktop: {
     label: "Desktop",
     color: "#2563eb",
@@ -29,9 +21,35 @@ const chartConfig = {
     label: "Mobile",
     color: "#60a5fa",
   },
-} satisfies ChartConfig;
+};
 
-export function Component() {
+const socket = io(); 
+
+export function SiteViewsChart() {
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/get-site-views');
+      const data = await response.json();
+      setChartData(data);
+    };
+
+    fetchData();
+
+    socket.on('view-updated', (updatedView) => {
+      setChartData((prevData) =>
+        prevData.map((item) =>
+          item.month === updatedView.month ? { ...item, views: updatedView.views } : item
+        )
+      );
+    });
+
+    return () => {
+      socket.off('view-updated');
+    };
+  }, []);
+
   return (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
       <BarChart accessibilityLayer data={chartData}>
