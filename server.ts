@@ -7,11 +7,11 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  const server = createServer((req, res) => {
+  const server = createServer((req: any, res: any) => {
     handle(req, res);
   });
 
-  // Initializing Socket.IO
+
   initializeSocket(server);
 
   server.listen(3000, (err) => {
