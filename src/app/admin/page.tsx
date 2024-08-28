@@ -1,5 +1,5 @@
 "use client"
-import { Component as SiteViewsChart } from './components/SiteViewsChart';
+import { SiteViewsChart } from './components/SiteViewsChart';
 import Dashboard from './Dashboard'
 import JobsTable from './jobs/page'
 export default function AdminDashboard() {
