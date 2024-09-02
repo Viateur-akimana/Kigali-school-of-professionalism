@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { db } from '@/lib/db';
+
 import { getIo } from '../../../server/socket-server';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
