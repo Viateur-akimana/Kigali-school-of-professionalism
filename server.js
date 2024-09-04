@@ -1,6 +1,6 @@
-import { createServer } from 'http';
-import next from 'next';
-import { initializeSocket } from "./server/socket-server";
+const { createServer } = require("http") ;
+const next = require('next');
+const { initializeSocket } = require("./server/socket-server") ;
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -13,7 +13,7 @@ app.prepare().then(() => {
 
   const io = initializeSocket(server);  
 
-  server.listen(3000, (err?: any) => {
+  server.listen(3000, (err) => {
     if (err) throw err;
     console.log('> Ready on http://localhost:3000');
   });
