@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardHeader, CardContent, Card } from '@/components/ui/card';
+import { CardContent, Card } from '@/components/ui/card';
 import { LucideIcon } from 'lucide-react';
 
 interface DashboardCardProps {

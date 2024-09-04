@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import jobs from '../../../../utils/data';
 import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -53,7 +53,7 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
     return <p>Job not found</p>;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

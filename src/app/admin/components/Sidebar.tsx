@@ -24,24 +24,24 @@ const Sidebar: React.FC = () => {
   return (
     <div className='h-full'>
       <Command className='bg-secondary h-full'>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="Type to search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
             <CommandItem>
-              <LayoutDashboard className='mr-2 h-4 w-4' />
-              <Link href='/'>Dashboard</Link>
+              <LayoutDashboard className='mr-2 h-5 w-5' />
+              <Link href='/admin'>Dashboard</Link>
             </CommandItem>
             <CommandItem>
-              <Newspaper className='mr-2 h-4 w-4' />
+              <Newspaper className='mr-2 h-5 w-5' />
               <Link href='/admin/jobs'>Jobs</Link>
             </CommandItem>
             <CommandItem>
-              <Folders className='mr-2 h-4 w-4' />
+              <Folders className='mr-2 h-5 w-5' />
               <Link href='/admin/categories'>Categories</Link>
             </CommandItem>
             <CommandItem>
-              <Folders className='mr-2 h-4 w-4' />
+              <Folders className='mr-2 h-5 w-5' />
               <Link href='/admin/courses'>Courses</Link>
             </CommandItem>
           </CommandGroup>
