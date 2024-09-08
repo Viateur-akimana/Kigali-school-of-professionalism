@@ -1,3 +1,5 @@
+import React from "react";
+import Link from "next/link";
 import {
   Table,
   TableCaption,
@@ -7,8 +9,6 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import React from "react";
-import Link from "next/link";
 import jobs from "../../utils/data";
 import BackButton from "../components/BackButton";
 
@@ -63,4 +63,9 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
   );
 };
 
-export default JobsTable;
+// Page component that uses the JobsTable
+const JobsPage: React.FC = () => {
+  return <JobsTable limit={10} title="All Jobs" />;
+};
+
+export default JobsPage;
