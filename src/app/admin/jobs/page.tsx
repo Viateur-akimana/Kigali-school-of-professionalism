@@ -18,7 +18,6 @@ interface JobsTableProps {
 }
 
 const JobsTable = ({ limit, title }: JobsTableProps) => {
-  // Limit the number of jobs displayed if the limit prop is provided
   const displayedJobs = limit ? jobs.slice(0, limit) : jobs;
 
   return (
@@ -65,7 +64,7 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
 
 // Page component that uses the JobsTable
 const JobsPage: React.FC = () => {
-  return <JobsTable limit={10} title="All Jobs" />;
+  return <JobsTable limit={15} title="All Jobs" />;
 };
 
 export default JobsPage;
