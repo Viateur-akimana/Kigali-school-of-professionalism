@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   Table,
@@ -18,12 +18,60 @@ interface JobsTableProps {
 }
 
 const JobsTable = ({ limit, title }: JobsTableProps) => {
-  const displayedJobs = limit ? jobs.slice(0, limit) : jobs;
+  // State for managing search and filters
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterType, setFilterType] = useState("All");
+
+  // Handle search and filter logic
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterType(e.target.value);
+  };
+
+  // Filtering and searching the jobs
+  const filteredJobs = jobs
+    .filter((job) => {
+      if (filterType === "All") return true;
+      return job.jobType === filterType;
+    })
+    .filter((job) => {
+      if (!searchTerm) return true;
+      return job.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+  const displayedJobs = limit ? filteredJobs.slice(0, limit) : filteredJobs;
 
   return (
     <div className="mt-10">
       <BackButton text="Go back" link="/" />
+
       <h3 className="text-2xl mb-4 font-semibold">{title || "Jobs"}</h3>
+
+      <div className="flex justify-between mb-4">
+        <input
+          type="text"
+          placeholder="Search jobs..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="border border-gray-300 rounded-lg p-2 w-1/2"
+        />
+
+        <select
+          value={filterType}
+          onChange={handleFilterChange}
+          className="border border-gray-300 rounded-lg p-2"
+        >
+          <option value="All">All Job Types</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Contract">Contract</option>
+        </select>
+      </div>
+
+      {/* Jobs Table */}
       <Table>
         <TableCaption>A list of recent jobs</TableCaption>
         <TableHeader>
