@@ -23,3 +23,13 @@ model Job{
   date   DateTime @default(now())
   location   String @db.VarChar(50)
 }
+model Course{
+   id          Int      @id @default(autoincrement())
+   title String
+  duration String
+  status String
+  visibility String
+  enrollments Int
+  price String
+  createdOn String
+}
