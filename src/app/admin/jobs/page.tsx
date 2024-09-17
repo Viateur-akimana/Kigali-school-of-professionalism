@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -18,11 +19,11 @@ interface JobsTableProps {
 }
 
 const JobsTable = ({ limit, title }: JobsTableProps) => {
-  // State for managing search and filters
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("All");
 
-  // Handle search and filter logic
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
@@ -31,7 +32,6 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
     setFilterType(e.target.value);
   };
 
-  // Filtering and searching the jobs
   const filteredJobs = jobs
     .filter((job) => {
       if (filterType === "All") return true;

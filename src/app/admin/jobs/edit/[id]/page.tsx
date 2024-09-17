@@ -66,14 +66,13 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
   });
 
   const handleSubmit = (data: z.infer<typeof formSchema>) => {
-    // Perform your update logic here
 
     toast({
       title: 'Job has been updated successfully',
       description: `Updated by ${data.company} on ${data.date}`,
     });
 
-    // Optional: Redirect back to jobs list after submission
+   
     router.push('/admin/jobs');
   };
 

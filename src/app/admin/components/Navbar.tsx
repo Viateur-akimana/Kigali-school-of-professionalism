@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="bg-primary dark:bg-slate-700 py-2 px-5 flex justify-between items-center text-white">
+    <div className="bg-primary dark:bg-slate-700 py-2 px-5 flex justify-between items-center text-white sticky">
       <Link href="/">
         <Image src={logo} width={40} alt="admin logo" />
       </Link>

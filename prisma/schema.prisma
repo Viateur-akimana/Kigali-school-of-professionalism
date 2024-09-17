@@ -14,3 +14,12 @@ model View {
   mobile    Int
   createdAt DateTime @default(now())
 }
+
+model Job{
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  company   String   @db.VarChar(50)
+  date   DateTime @default(now())
+  location   String @db.VarChar(50)
+}
