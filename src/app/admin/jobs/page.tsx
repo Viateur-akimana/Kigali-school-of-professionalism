@@ -59,6 +59,8 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
           className="border border-gray-300 rounded-lg p-2 w-1/2"
         />
 
+<div className="space-x-4">
+  
         <select
           value={filterType}
           onChange={handleFilterChange}
@@ -69,11 +71,15 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
           <option value="Part-time">Part-time</option>
           <option value="Contract">Contract</option>
         </select>
+        <Link href="/admin/jobs/add">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Job
+          </button>
+        </Link>
+        </div>
       </div>
 
-      {/* Jobs Table */}
       <Table>
-        <TableCaption>A list of recent jobs</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Title</TableHead>
