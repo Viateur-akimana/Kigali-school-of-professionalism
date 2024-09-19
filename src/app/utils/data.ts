@@ -3,7 +3,6 @@ import cybrary from '../../../public/cybrary.png';
 import ensign from '../../../public/ensign.png';
 import cmu from "../../../public/cmu.jpeg"
 import isc2 from "../../../public/isc2.png"
-import jobs from "../../types/jobs"
 import Industry from '../(client)/types/industries';
 
 
@@ -113,36 +112,4 @@ export const testimonials = [
   ];
 
 
-  
-  const job : jobs[] = [
-    {
-      id: '1',
-      title: 'Frontend Developer',
-      company: 'Tech Company',
-      date: '2023-06-12',
-      description: 'Develop and maintain web applications using React and TypeScript.',
-      jobType: 'Full-time',
-      location: 'Kigali, Rwanda'
-    },
-    {
-      id: '2',
-      title: 'Backend Developer',
-      company: 'Another Tech Company',
-      date: '2023-06-14',
-      description: 'Build and optimize server-side logic and databases.',
-      jobType: 'Part-time',
-      location: 'Kampala, Uganda'
-    },
-    {
-      id: '3',
-      title: 'Full Stack Developer',
-      company: 'Startup Inc.',
-      date: '2023-06-16',
-      description: 'Work on both frontend and backend parts of the web application.',
-      jobType: 'Freelance',
-      location: 'Nairobi, Kenya'
-    },
-  ];
-  
-  export default job;
   

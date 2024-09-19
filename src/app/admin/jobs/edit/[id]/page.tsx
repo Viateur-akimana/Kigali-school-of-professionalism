@@ -1,5 +1,6 @@
 'use client';
-/* eslint-disable */
+
+import React, { useEffect, useState } from 'react';
 import BackButton from '../../../components/BackButton';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
@@ -12,12 +13,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import jobs from '../../../../utils/data';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import Job from '@/types/jobs';
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -35,6 +35,9 @@ const formSchema = z.object({
   date: z.string().min(1, {
     message: 'Date is required',
   }),
+  jobType: z.string().min(1, {
+    message: 'Job Type is required',
+  }),
 });
 
 interface JobEditPageProps {
@@ -43,38 +46,96 @@ interface JobEditPageProps {
   };
 }
 
+const jobTypes = [
+  'Full-time',
+  'Part-time',
+  'Contract',
+  'Internship',
+  'Temporary',
+];
+
 const JobsEditPage = ({ params }: JobEditPageProps) => {
   const { toast } = useToast();
   const router = useRouter();
+  const [job, setJob] = useState<Job | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const job = jobs.find((job) => job.id === params.id);
+  useEffect(() => {
+    const fetchJob = async () => {
+      try {
+        const response = await fetch(`/api/jobs/${params.id}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch job');
+        }
+        const data = await response.json();
+        setJob(data);
+        setLoading(false);
+      } catch (err) {
+        setError('Error fetching job details. Please try again later.');
+        setLoading(false);
+      }
+    };
 
-  if (!job) {
-    return <p>Job not found</p>;
-  }
-
+    fetchJob();
+  }, [params.id]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: job.title,
-      company: job.company,
-      location: job.location,
-      description: job.description,
-      date: job.date,
+      title: '',
+      company: '',
+      location: '',
+      description: '',
+      date: '',
+      jobType: '',
     },
   });
 
-  const handleSubmit = (data: z.infer<typeof formSchema>) => {
+  useEffect(() => {
+    if (job) {
+      form.reset({
+        title: job.title,
+        company: job.company,
+        location: job.location,
+        description: job.description,
+        date: job.date,
+        jobType: job.jobType,
+      });
+    }
+  }, [job, form]);
 
-    toast({
-      title: 'Job has been updated successfully',
-      description: `Updated by ${data.company} on ${data.date}`,
-    });
+  const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      const response = await fetch(`/api/jobs/${params.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-   
-    router.push('/admin/jobs');
+      if (!response.ok) {
+        throw new Error('Failed to update job');
+      }
+
+      toast({
+        title: 'Job has been updated successfully',
+        description: `Updated by ${data.company} on ${data.date}`,
+      });
+
+      router.push('/admin/jobs');
+    } catch (err) {
+      toast({
+        title: 'Update Failed',
+        description: 'There was an error updating the job. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
@@ -176,6 +237,31 @@ const JobsEditPage = ({ params }: JobEditPageProps) => {
                     placeholder="Enter Description"
                     {...field}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="jobType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                  Job Type
+                </FormLabel>
+                <FormControl>
+                  <select
+                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    {...field}
+                  >
+                    {jobTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
                 </FormControl>
                 <FormMessage />
               </FormItem>

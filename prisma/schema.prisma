@@ -22,6 +22,7 @@ model Job{
   company   String   @db.VarChar(50)
   date   DateTime @default(now())
   location   String @db.VarChar(50)
+    jobType     String   @db.VarChar(20)
 }
 model Course{
    id          Int      @id @default(autoincrement())

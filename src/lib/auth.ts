@@ -1,8 +1,13 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { User } from "next-auth"; 
 
 if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
     throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD must be set in environment variables");
+}
+
+interface CustomUser extends User {
+    isAdmin?: boolean;
 }
 
 export const authOptions: NextAuthOptions = {
@@ -22,24 +27,29 @@ export const authOptions: NextAuthOptions = {
                     credentials.email === process.env.ADMIN_EMAIL &&
                     credentials.password === process.env.ADMIN_PASSWORD
                 ) {
-                    return { id: "1", email: process.env.ADMIN_EMAIL, name: "Admin User", isAdmin: true };
+                    return {
+                        id: "1",
+                        email: process.env.ADMIN_EMAIL,
+                        name: "Admin User",
+                        isAdmin: true,
+                    } as CustomUser;
                 }
-
 
                 return null;
             },
         }),
     ],
     callbacks: {
-        jwt: async ({ token, user }) => {
+        async jwt({ token, user }) {
             if (user) {
-                token.isAdmin = user.isAdmin;
+          
+                (token as any).isAdmin = user.isAdmin;
             }
             return token;
         },
-        session: async ({ session, token }) => {
+        async session({ session, token }) {
             if (session?.user) {
-                (session.user as any).isAdmin = token.isAdmin;
+                (session.user as CustomUser).isAdmin = (token as any).isAdmin;
             }
             return session;
         },
