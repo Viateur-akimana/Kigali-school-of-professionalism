@@ -17,6 +17,14 @@ const config = {
         "2xl": "1400px",
       },
     },
+    theme: {
+      extend: {
+        fontFamily: {
+          dm: ['"DM Sans"', 'sans-serif'], 
+          poppins: ['Poppins', 'sans-serif'],
+        },
+      },
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

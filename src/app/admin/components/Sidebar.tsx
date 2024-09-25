@@ -1,77 +1,149 @@
-import React from 'react';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command";
+"use client";
+import React from "react";
 import {
   LayoutDashboard,
+  Briefcase,
+  Folder,
   Newspaper,
-  Folders,
-  CreditCard,
-  Settings,
   User,
-} from 'lucide-react';
-import Link from 'next/link';
+  Settings,
+  Folders,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import profile from "../../../../public/Vector.png";
+import { usePathname } from "next/navigation";
 
 const Sidebar: React.FC = () => {
+  const currentPath = usePathname();
+
   return (
-    <div className='h-full flex justify-center items-center bg-gray-50 dark:bg-gray-900'>
-      <Command className='bg-secondary h-full w-80 p-4 rounded-lg shadow-md'>
-        <CommandInput 
-          placeholder="Type to search..." 
-          className="mb-4 text-lg placeholder-gray-500 dark:placeholder-gray-300"
+    <div className="h-screen w-80 bg-white dark:bg-gray-900 p-6 flex flex-col justify-between shadow-lg">
+      <div>
+        <div className="mb-6">
+          <h1 className="text-2xl ml-6 font-bold text-[#2B3674]">ISG Admin.</h1>
+        </div>
+
+        <div className="pt-10">
+          <div className="space-y-4 text-lg">
+            <Link
+              href="/admin"
+              className={`${
+                currentPath === "/admin"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center p-2 rounded transition-all`}
+            >
+              <LayoutDashboard className="mr-2 h-6 w-6" />
+              <span>Dashboard</span>
+            </Link>
+
+            <Link
+              href="/admin/jobs"
+              className={`${
+                currentPath === "/admin/jobs"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center  p-2 rounded transition-all`}
+            >
+              <Briefcase className="mr-2 h-6 w-6" />
+              <span>Jobs</span>
+            </Link>
+
+            <Link
+              href="/admin/courses"
+              className={`${
+                currentPath === "/admin/courses"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center p-2 rounded transition-all`}
+            >
+              <Newspaper className="mr-2 h-6 w-6" />
+              <span>Courses</span>
+            </Link>
+
+            <Link
+              href="/admin/categories"
+              className={`${
+                currentPath === "/admin/categories"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center p-2 rounded transition-all`}
+            >
+              <Folder className="mr-2 h-6 w-6" />
+              <span>Categories</span>
+            </Link>
+
+            <Link
+              href="/admin/posts"
+              className={`${
+                currentPath === "/admin/posts"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center  p-2 rounded transition-all`}
+            >
+              <Folders className="mr-2 h-6 w-6" />
+              <span>Posts</span>
+            </Link>
+
+            <Link
+              href="/admin/users"
+              className={`${
+                currentPath === "/admin/users"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center  p-2 rounded transition-all`}
+            >
+              <User className="mr-2 h-6 w-6" />
+              <span>Users</span>
+            </Link>
+
+            <Link
+              href="/admin/projects"
+              className={`${
+                currentPath === "/admin/projects"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center p-2 rounded transition-all`}
+            >
+              <Folders className="mr-2 h-6 w-6" />
+              <span>Projects</span>
+            </Link>
+
+            <Link
+              href="/admin/settings"
+              className={`${
+                currentPath === "/admin/settings"
+                  ? "bg-[#4318FF] text-white"
+                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+              } flex items-center  p-2 rounded transition-all`}
+            >
+              <Settings className="mr-2 h-6 w-6" />
+              <span>Settings</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center pb-10 rounded-lg shadow-sm">
+        <Image
+          src={profile}
+          alt="Profile Picture"
+          width={40}
+          height={40}
+          className="rounded-full object-cover border-2 border-blue-600"
         />
-        <CommandList className="overflow-hidden">
-          <CommandEmpty className="text-gray-400 dark:text-gray-300">No results found.</CommandEmpty>
-          
-          <CommandGroup heading="Suggestions" className="text-4xl"> 
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <LayoutDashboard className='mr-2 h-6 w-6 text-blue-500' />
-              <Link href='/admin' className="text-gray-800 dark:text-gray-200">Dashboard</Link>
-            </CommandItem>
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <Newspaper className='mr-2 h-6 w-6 text-green-500' />
-              <Link href='/admin/jobs' className="text-gray-800 dark:text-gray-200">Jobs</Link>
-            </CommandItem>
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <Folders className='mr-2 h-6 w-6 text-yellow-500' />
-              <Link href='/admin/categories' className="text-gray-800 dark:text-gray-200">Categories</Link>
-            </CommandItem>
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <Folders className='mr-2 h-6 w-6 text-purple-500' />
-              <Link href='/admin/courses' className="text-gray-800 dark:text-gray-200">Courses</Link>
-            </CommandItem>
-          </CommandGroup>
-
-          <CommandSeparator />
-
-          <CommandGroup heading="Settings" className="text-xl"> 
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <User className='mr-2 h-5 w-5 text-red-500' />
-              <span className="text-gray-800 dark:text-gray-200">Profile</span>
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <CreditCard className='mr-2 h-5 w-5 text-blue-500' />
-              <span className="text-gray-800 dark:text-gray-200">Comments</span>
-              <CommandShortcut>⌘B</CommandShortcut>
-            </CommandItem>
-            <CommandItem className="flex items-center text-lg hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
-              <Settings className='mr-2 h-5 w-5 text-gray-500' />
-              <span className="text-gray-800 dark:text-gray-200">Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </Command>
+        <div className="ml-4">
+          <h3 className="text-md text-[#2B3674] dark:text-gray-100 font-bold">
+            Alex Smith
+          </h3>
+          <button className="text-sm text-[#A3AED0] dark:text-gray-400 hover:text-blue-600 transition font-bold">
+            Logout
+          </button>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

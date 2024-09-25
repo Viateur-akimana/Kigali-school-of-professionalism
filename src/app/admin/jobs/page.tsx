@@ -10,13 +10,22 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import {
+  Select, SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import BackButton from '../components/BackButton';
 
 interface Job {
   id: number;
   title: string;
   company: string;
-  date: Date; 
+  date: Date;
   jobType: string;
   location: string;
 }
@@ -36,7 +45,7 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('/api/jobs'); 
+        const response = await fetch('/api/jobs');
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
         }
@@ -74,8 +83,8 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
     }
   };
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilterType(e.target.value);
+  const handleFilterChange = (value: string) => {
+    setFilterType(value);
   };
 
   const filteredJobs = jobs
@@ -94,41 +103,41 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="mt-10">
-      <BackButton text="Go back" link="/" />
-      <h3 className="text-2xl mb-4 font-semibold">{title || 'Jobs'}</h3>
-      <div className="flex justify-between mb-4">
-        <input
+    <div className="mt-10 mr-7 p-6 bg-white text-[#2B3674] rounded-lg shadow-md">
+      <h3 className="text-2xl mb-6 text-[#1B2559] p-5 font-bold font-serifs">{title || 'List of recent jobs'}</h3>
+      <div className="flex flex-row justify-between mb-6 mx-4">
+        <Input
           type="text"
-          placeholder="Search jobs..."
+          placeholder="Search jobs..." 
           value={searchTerm}
           onChange={handleSearch}
-          className="border border-gray-300 rounded-lg p-2 w-1/2"
+          className="w-1/2"
         />
-        <div className="space-x-4">
-          <select
-            value={filterType}
-            onChange={handleFilterChange}
-            className="border border-gray-300 rounded-lg p-2"
-          >
-            <option value="All">All Job Types</option>
-            <option value="Full-time">Full-time</option>
-            <option value="Part-time">Part-time</option>
-            <option value="Contract">Contract</option>
-          </select>
+        <div className="space-x-4 mr-4 flex flex-row ">
+          <Select onValueChange={handleFilterChange} defaultValue={filterType}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select job type" className="text-[#2B3674]" />
+            </SelectTrigger>
+            <SelectContent className="text-[#2B3674]">
+              <SelectItem value="All">All Job Types</SelectItem>
+              <SelectItem value="Full-time">Full-time</SelectItem>
+              <SelectItem value="Part-time">Part-time</SelectItem>
+              <SelectItem value="Contract">Contract</SelectItem>
+            </SelectContent>
+          </Select>
           <Link href="/admin/jobs/add">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Add Job
-            </button>
+            <Button variant="purple">Add Job</Button>
           </Link>
         </div>
       </div>
+      <div className="border-t border-gray-300"></div>
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead className="w-[50px]"></TableHead>
             <TableHead>Title</TableHead>
             <TableHead className="hidden md:table-cell">Company</TableHead>
-            <TableHead className="hidden md:table-cell text-right">Date</TableHead>
+            <TableHead className="hidden md:table-cell">Date</TableHead>
             <TableHead className="hidden md:table-cell">Job Type</TableHead>
             <TableHead className="hidden md:table-cell">Location</TableHead>
             <TableHead>Action</TableHead>
@@ -137,26 +146,29 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
         <TableBody>
           {displayedJobs.map((job) => (
             <TableRow key={job.id}>
-              <TableCell>{job.title}</TableCell>
+              <TableCell>
+                <Checkbox />
+              </TableCell>
+              <TableCell className="font-medium">{job.title}</TableCell>
               <TableCell className="hidden md:table-cell">{job.company}</TableCell>
-              <TableCell className="text-right hidden md:table-cell">
+              <TableCell className="hidden md:table-cell">
                 {new Intl.DateTimeFormat('en-US').format(new Date(job.date))}
               </TableCell>
               <TableCell className="hidden md:table-cell">{job.jobType}</TableCell>
               <TableCell className="hidden md:table-cell">{job.location}</TableCell>
               <TableCell>
-                <div className="flex space-x-4">
+                <div className="flex space-x-2">
                   <Link href={`/admin/jobs/edit/${job.id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs">
-                      Edit
-                    </button>
+                    <Button variant="outline" size="sm" >Edit</Button>
                   </Link>
-                  <button
-
-                  onClick={() => handleDelete(job.id)} 
-                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-xs">
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => handleDelete(job.id)}
+                    className="bg-[#EE5D50] hover:bg-[#d95540]" 
+                  >
                     Delete
-                  </button>
+                  </Button>
                 </div>
               </TableCell>
             </TableRow>
@@ -167,8 +179,4 @@ const JobsTable = ({ limit, title }: JobsTableProps) => {
   );
 };
 
-const JobsPage: React.FC = () => {
-  return <JobsTable limit={15} title="All Jobs" />;
-};
-
-export default JobsPage;
+export default JobsTable;

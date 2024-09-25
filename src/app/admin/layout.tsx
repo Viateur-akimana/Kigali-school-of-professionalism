@@ -1,12 +1,12 @@
 'use client';
 
-import Navbar from "./components/Navbar"
-import Sidebar from "./components/Sidebar"
+import React, { useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function AdminLayout({
   children,
@@ -19,14 +19,14 @@ export default function AdminLayout({
   useEffect(() => {
     if (status === "loading") return;
     if (!session) {
-      router.push('/auth'); 
+      router.push('/auth');
     } else if (!(session.user as any).isAdmin) {
       router.push('/');
     }
   }, [session, status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   if (!session || !(session.user as any).isAdmin) {
@@ -40,16 +40,20 @@ export default function AdminLayout({
       enableSystem={true}
       storageKey='dashboard-theme'
     >
-      <div>
-        <Navbar />
-        <div className="flex">
-          <div className="hidden md:block h-[100vh] w-[300px]">
-            <Sidebar />
-          </div>
-          <main>{children}</main>
+      <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="hidden md:flex md:flex-shrink-0">
+          <Sidebar />
+        </div>
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-10 dark:bg-gray-800 p-4">
+            <Navbar />
+            <div className="mt-4">
+              {children}
+            </div>
+          </main>
         </div>
       </div>
-      <Toaster/>
+      <Toaster />
     </ThemeProvider>
-  )
+  );
 }
