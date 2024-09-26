@@ -1,13 +1,12 @@
-  import React from 'react';
-  import Card from './Card';
+'use client'
+import React from 'react';
+import Card from './Card';
 
-  
-  const Home: React.FC = () => {
-
+const Home: React.FC = () => {
   const courses = [
     {
       title: 'Front and backend engineering',
-      duration: 'Self-Paced | 24 Weeks',  
+      duration: 'Self-Paced | 24 Weeks',
       status: 'Active',
       visibility: 'Public',
       enrollments: 0,
@@ -69,7 +68,7 @@
       createdOn: 'Created on Jul 6, 2024',
     },
     {
-      title: 'Professional Web design(UX/UI)',
+      title: 'Professional Web Design (UX/UI)',
       duration: 'Self-Paced | 24 Weeks',
       status: 'Active',
       visibility: 'Public',
@@ -121,7 +120,6 @@
       enrollments: 1,
       price: '$10.00',
       createdOn: 'Created on Jun 11, 2024',
-
     },
     {
       title: 'Productivity Crash Course',
@@ -142,26 +140,42 @@
       createdOn: 'Created on Mar 20, 2024',
     },
   ];
-  
-    return (
-      <div className="container mx-auto mt-20 px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Available Courses</h1>
-        <div className="flex flex-wrap justify-center">
-          {courses.map((course, index) => (
-            <Card
-              key={index}
-              title={course.title}
-              duration={course.duration}
-              status={course.status}
-              visibility={course.visibility}
-              enrollments={course.enrollments}
-              price={course.price}
-              createdOn={course.createdOn}
-            />
-          ))}
-        </div>
-      </div>
-    );
+
+  const handleEdit = (index: number) => {
+    alert(`Edit course at index: ${index}`);
   };
-  
-  export default Home;
+
+  const handleDelete = (index: number) => {
+    alert(`Delete course at index: ${index}`);
+  };
+
+  return (
+    <div className="container mx-auto mt-20 px-4 py-8">
+ <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Available Courses</h1>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none transition">
+          Add New Course
+        </button>
+      </div>
+      <div className="flex flex-wrap justify-center">
+        {courses.map((course, index) => (
+          <Card
+            key={index}
+            title={course.title}
+            duration={course.duration}
+            status={course.status}
+            visibility={course.visibility}
+            enrollments={course.enrollments}
+            price={course.price}
+            createdOn={course.createdOn}
+            onEdit={() => handleEdit(index)}
+            onDelete={() => handleDelete(index)}
+          />
+        ))}
+      </div>
+ 
+    </div>
+  );
+};
+
+export default Home;
