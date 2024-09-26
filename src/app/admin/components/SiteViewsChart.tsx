@@ -1,71 +1,73 @@
-"use client";
+import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
 
-import { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-
-const chartConfig: ChartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "#2563eb",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
-  },
+const generateTrendData = () => {
+  return [...Array(6)].map((_, i) => ({
+    month: ['SEP', 'OCT', 'NOV', 'DEC', 'JAN', 'FEB'][i],
+    desktop: Math.floor(Math.random() * 1000) + 2000,
+    mobile: Math.floor(Math.random() * 800) + 1500,
+  }));
 };
 
-const socket = io(); 
+const generateWeeklyViewsData = () => {
+  return [...Array(8)].map((_, i) => ({
+    week: i + 17,
+    desktop: Math.floor(Math.random() * 500) + 100,
+    mobile: Math.floor(Math.random() * 300) + 50,
+  }));
+};
 
-export function SiteViewsChart() {
-  const [chartData, setChartData] = useState([]);
+const SiteViewsChart = () => {
+  const [trendData, setTrendData] = useState(generateTrendData());
+  const [weeklyViewsData, setWeeklyViewsData] = useState(generateWeeklyViewsData());
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/api/get-site-views');
-      const data = await response.json();
-      setChartData(data);
-    };
-
-    fetchData();
-
-    socket.on('view-updated', (updatedView) => {
-      setChartData((prevData) =>
-        prevData.map((item) =>
-          item.month === updatedView.month ? { ...item, views: updatedView.views } : item
-        )
-      );
-    });
-
-    return () => {
-      socket.off('view-updated');
-    };
+    const interval = setInterval(() => {
+      setTrendData(generateTrendData());
+      setWeeklyViewsData(generateWeeklyViewsData());
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-      <BarChart accessibilityLayer data={chartData}>
-        <CartesianGrid vertical={false} />
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          tickFormatter={(value) => value.slice(0, 3)}
-        />
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="desktop" fill={chartConfig.desktop.color} radius={4} />
-        <Bar dataKey="mobile" fill={chartConfig.mobile.color} radius={4} />
-      </BarChart>
-    </ChartContainer>
+    <div className="p-4 flex space-x-4">
+      <Card className="flex-1">
+        <CardHeader>
+          <h2 className="text-2xl font-bold">37.5K</h2>
+          <p className="text-sm text-green-500">On track</p>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart data={trendData}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="month" axisLine={false} tickLine={false} />
+              <YAxis hide={true} />
+              <Line type="monotone" dataKey="desktop" stroke="#2563eb" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="mobile" stroke="#60a5fa" strokeWidth={2} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <Card className="flex-1">
+        <CardHeader>
+          <h2 className="text-xl font-bold">Weekly Views</h2>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={weeklyViewsData}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="week" axisLine={false} tickLine={false} />
+              <YAxis hide={true} />
+              <Bar dataKey="desktop" stackId="a" fill="#2563eb" />
+              <Bar dataKey="mobile" stackId="a" fill="#60a5fa" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </div>
   );
-}
+};
+
+export default SiteViewsChart;
