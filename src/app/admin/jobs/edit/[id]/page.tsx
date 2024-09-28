@@ -1,280 +1,211 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-import BackButton from '../../../components/BackButton';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
-import Job from '@/types/jobs';
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+
 
 const formSchema = z.object({
-  title: z.string().min(1, {
-    message: 'Title is required',
-  }),
-  company: z.string().min(1, {
-    message: 'Company is required',
-  }),
-  location: z.string().min(1, {
-    message: 'Location is required',
-  }),
-  description: z.string().min(1, {
-    message: 'Description is required',
-  }),
-  date: z.string().min(1, {
-    message: 'Date is required',
-  }),
-  jobType: z.string().min(1, {
-    message: 'Job Type is required',
-  }),
+  title: z.string().min(1, { message: "Title is required" }),
+  company: z.string().min(1, { message: "Company is required" }),
+  location: z.string().min(1, { message: "Location is required" }),
+  description: z.string().min(1, { message: "Description is required" }),
+  date: z.string().min(1, { message: "Date is required" }),
+  jobType: z.string().min(1, { message: "Job Type is required" }),
 });
 
-interface JobEditPageProps {
-  params: {
-    id: string;
+
+const jobTypes = [
+  "Full-time",
+  "Part-time",
+  "Contract",
+  "Internship",
+  "Temporary",
+];
+
+interface EnhancedJobEditFormProps {
+  onSubmit: (data: any) => void;
+  initialData?: {
+    title?: string;
+    company?: string;
+    location?: string;
+    description?: string;
+    date?: string;
+    jobType?: string;
   };
 }
 
-const jobTypes = [
-  'Full-time',
-  'Part-time',
-  'Contract',
-  'Internship',
-  'Temporary',
-];
-
-const JobsEditPage = ({ params }: JobEditPageProps) => {
-  const { toast } = useToast();
-  const router = useRouter();
-  const [job, setJob] = useState<Job | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchJob = async () => {
-      try {
-        const response = await fetch(`/api/jobs/${params.id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch job');
-        }
-        const data = await response.json();
-        setJob(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Error fetching job details. Please try again later.');
-        setLoading(false);
-      }
-    };
-
-    fetchJob();
-  }, [params.id]);
-
-  const form = useForm<z.infer<typeof formSchema>>({
+const EnhancedJobEditForm: React.FC<EnhancedJobEditFormProps> = ({
+  onSubmit,
+  initialData,
+}) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: '',
-      company: '',
-      location: '',
-      description: '',
-      date: '',
-      jobType: '',
-    },
+    defaultValues: initialData || {},
   });
 
-  useEffect(() => {
-    if (job) {
-      form.reset({
-        title: job.title,
-        company: job.company,
-        location: job.location,
-        description: job.description,
-        date: job.date,
-        jobType: job.jobType,
-      });
-    }
-  }, [job, form]);
-
-  const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
-      const response = await fetch(`/api/jobs/${params.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to update job');
-      }
-
-      toast({
-        title: 'Job has been updated successfully',
-        description: `Updated by ${data.company} on ${data.date}`,
-      });
-
-      router.push('/admin/jobs');
-    } catch (err) {
-      toast({
-        title: 'Update Failed',
-        description: 'There was an error updating the job. Please try again.',
-        variant: 'destructive',
-      });
-    }
-  };
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-
   return (
-    <>
-      <BackButton text="Back To Jobs" link="/admin/jobs" />
-      <h3 className="text-2xl mb-4">Edit Job</h3>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                  Title
-                </FormLabel>
-                <FormControl>
+    <Card className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <CardHeader className="bg-indigo-600 text-white p-6">
+        <h3 className="text-2xl font-semibold">Edit Job</h3>
+      </CardHeader>
+      <CardContent className="p-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Controller
+              name="title"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Title
+                  </label>
                   <Input
-                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    {...field}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     placeholder="Enter Title"
-                    {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="company"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                  Company
-                </FormLabel>
-                <FormControl>
+                  {errors.title && (
+                    <p className="mt-1 text-xs text-red-600">
+                      {errors.title.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
+            <Controller
+              name="company"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Company
+                  </label>
                   <Input
-                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    {...field}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     placeholder="Enter Company"
-                    {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="location"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                  Location
-                </FormLabel>
-                <FormControl>
+                  {errors.company && (
+                    <p className="mt-1 text-xs text-red-600">
+                      {errors.company.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Controller
+              name="location"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Location
+                  </label>
                   <Input
-                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                    {...field}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     placeholder="Enter Location"
-                    {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="date"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
-                  Date
-                </FormLabel>
-                <FormControl>
+                  {errors.location && (
+                    <p className="mt-1 text-xs text-red-600">
+                      {errors.location.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
+            <Controller
+              name="date"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Date
+                  </label>
                   <Input
-                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
-                    placeholder="Enter Date"
                     {...field}
+                    type="date"
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
+                  {errors.date && (
+                    <p className="mt-1 text-xs text-red-600">
+                      {errors.date.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
+          </div>
+          <Controller
             name="description"
+            control={control}
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Description
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
-                    placeholder="Enter Description"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+                </label>
+                <textarea
+                  {...field}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Enter Description"
+                />
+                {errors.description && (
+                  <p className="mt-1 text-xs text-red-600">
+                    {errors.description.message}
+                  </p>
+                )}
+              </div>
             )}
           />
-
-          <FormField
-            control={form.control}
+          <Controller
             name="jobType"
+            control={control}
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Job Type
-                </FormLabel>
-                <FormControl>
-                  <select
-                    className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
-                    {...field}
-                  >
+                </label>
+                <div className="relative">
+                  <Select {...field}>
                     {jobTypes.map((type) => (
                       <option key={type} value={type}>
                         {type}
                       </option>
                     ))}
-                  </select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+                  </Select>
+                </div>
+                {errors.jobType && (
+                  <p className="mt-1 text-xs text-red-600">
+                    {errors.jobType.message}
+                  </p>
+                )}
+              </div>
             )}
           />
-
-          <Button type="submit" className="w-full dark:bg-slate-800 dark:text-white">
-            Update Job
-          </Button>
+          <CardFooter className="p-6">
+            <Button type="submit" className="bg-indigo-600 text-white">
+              Save Changes
+            </Button>
+          </CardFooter>
         </form>
-      </Form>
-    </>
+      </CardContent>
+    </Card>
   );
 };
 
-export default JobsEditPage;
+export default EnhancedJobEditForm;
