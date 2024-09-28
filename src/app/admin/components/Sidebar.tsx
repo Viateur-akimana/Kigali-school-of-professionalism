@@ -20,19 +20,20 @@ const Sidebar: React.FC = () => {
   return (
     <div className="h-screen w-80 bg-white dark:bg-gray-900 p-6 flex flex-col justify-between shadow-lg">
       <div>
-        <div className="mb-6">
-          <h1 className="text-2xl ml-6 font-bold text-[#2B3674]">ISG Admin.</h1>
+        <div className="mb-6 flex items-center">
+          <h1 className="ml-3 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#4318FF] to-[#00BFA6] drop-shadow-md">
+            IT Solutions Group
+          </h1>
         </div>
 
         <div className="pt-10">
           <div className="space-y-4 text-lg">
             <Link
               href="/admin"
-              className={`${
-                currentPath === "/admin"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center p-2 rounded transition-all`}
+              className={`${currentPath === "/admin"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center p-2 rounded transition-all`}
             >
               <LayoutDashboard className="mr-2 h-6 w-6" />
               <span>Dashboard</span>
@@ -40,11 +41,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/jobs"
-              className={`${
-                currentPath === "/admin/jobs"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center  p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/jobs"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center  p-2 rounded transition-all`}
             >
               <Briefcase className="mr-2 h-6 w-6" />
               <span>Jobs</span>
@@ -52,11 +52,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/courses"
-              className={`${
-                currentPath === "/admin/courses"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/courses"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center p-2 rounded transition-all`}
             >
               <Newspaper className="mr-2 h-6 w-6" />
               <span>Courses</span>
@@ -64,11 +63,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/categories"
-              className={`${
-                currentPath === "/admin/categories"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/categories"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center p-2 rounded transition-all`}
             >
               <Folder className="mr-2 h-6 w-6" />
               <span>Categories</span>
@@ -76,11 +74,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/posts"
-              className={`${
-                currentPath === "/admin/posts"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center  p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/posts"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center  p-2 rounded transition-all`}
             >
               <Folders className="mr-2 h-6 w-6" />
               <span>Posts</span>
@@ -88,11 +85,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/users"
-              className={`${
-                currentPath === "/admin/users"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center  p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/users"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center  p-2 rounded transition-all`}
             >
               <User className="mr-2 h-6 w-6" />
               <span>Users</span>
@@ -100,11 +96,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/projects"
-              className={`${
-                currentPath === "/admin/projects"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/projects"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center p-2 rounded transition-all`}
             >
               <Folders className="mr-2 h-6 w-6" />
               <span>Projects</span>
@@ -112,11 +107,10 @@ const Sidebar: React.FC = () => {
 
             <Link
               href="/admin/settings"
-              className={`${
-                currentPath === "/admin/settings"
-                  ? "bg-[#4318FF] text-white"
-                  : "font-poppins font-normal text-gray-600 dark:text-gray-200"
-              } flex items-center  p-2 rounded transition-all`}
+              className={`${currentPath === "/admin/settings"
+                ? "bg-[#4318FF] text-white"
+                : "font-poppins font-normal text-gray-600 dark:text-gray-200"
+                } flex items-center  p-2 rounded transition-all`}
             >
               <Settings className="mr-2 h-6 w-6" />
               <span>Settings</span>

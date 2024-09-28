@@ -150,14 +150,18 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto mt-20 px-4 py-8">
- <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Available Courses</h1>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none transition">
+    <div className="container mx-auto mt-10 px-6 py-12 bg-gradient-to-r from-indigo-50 via-white to-purple-50 dark:bg-gray-900">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+        <div className="flex items-center">
+          <h1 className="text-3xl ml-6 md:text-4xl font-extrabold text-indigo-800 dark:text-white mb-4 md:mb-0">
+            Available courses
+          </h1>
+        </div>
+        <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition duration-300 ease-in-out">
           Add New Course
         </button>
       </div>
-      <div className="flex flex-wrap justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course, index) => (
           <Card
             key={index}
@@ -173,7 +177,6 @@ const Home: React.FC = () => {
           />
         ))}
       </div>
- 
     </div>
   );
 };
