@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,7 +13,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 
-
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
   company: z.string().min(1, { message: "Company is required" }),
@@ -21,7 +21,6 @@ const formSchema = z.object({
   date: z.string().min(1, { message: "Date is required" }),
   jobType: z.string().min(1, { message: "Job Type is required" }),
 });
-
 
 const jobTypes = [
   "Full-time",
@@ -45,7 +44,7 @@ interface EnhancedJobEditFormProps {
 
 const EnhancedJobEditForm: React.FC<EnhancedJobEditFormProps> = ({
   onSubmit,
-  initialData,
+  initialData = {},
 }) => {
   const {
     control,
@@ -53,7 +52,14 @@ const EnhancedJobEditForm: React.FC<EnhancedJobEditFormProps> = ({
     formState: { errors },
   } = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData || {},
+    defaultValues: {
+      title: initialData.title || "",
+      company: initialData.company || "",
+      location: initialData.location || "",
+      description: initialData.description || "",
+      date: initialData.date || new Date().toISOString().slice(0, 10), // Default to today's date
+      jobType: initialData.jobType || jobTypes[0], // Default to first job type
+    },
   });
 
   return (
