@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod';
+import { Prisma } from '@prisma/client';
 import prisma from "@/lib/db";
 
 const schema = z.object({
@@ -26,20 +27,29 @@ export async function POST(request: NextRequest) {
     }
 
     try {
+
+        const { id, ...jobData } = body;
+
         const newJob = await prisma.job.create({
             data: {
-                title: body.title,
-                description: body.description,
-                company: body.company,
-                date: body.date, 
-                jobType: body.jobType,
-                location: body.location
+                title: jobData.title,
+                description: jobData.description,
+                company: jobData.company,
+                date: jobData.date,
+                jobType: jobData.jobType,
+                location: jobData.location
             }
         });
 
         return NextResponse.json(newJob, { status: 201 });
     } catch (error) {
-        console.error(error);
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            if (error.code === 'P2002') {
+                return NextResponse.json({ error: 'Unique constraint failed on a field' }, { status: 400 });
+            }
+        }
+
+        console.error('Error creating job:', error);
         return NextResponse.json({ error: 'Failed to create job' }, { status: 500 });
     }
 }
@@ -49,7 +59,7 @@ export async function GET() {
         const allJobs = await prisma.job.findMany();
         return NextResponse.json(allJobs, { status: 200 });
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching jobs:', error);
         return NextResponse.json({ error: 'Failed to fetch jobs' }, { status: 500 });
     }
 }

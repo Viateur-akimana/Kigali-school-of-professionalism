@@ -1,17 +1,15 @@
-'use client'
-import React from "react";
+'use client';
+
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
@@ -19,48 +17,95 @@ const formSchema = z.object({
   location: z.string().min(1, { message: "Location is required" }),
   description: z.string().min(1, { message: "Description is required" }),
   date: z.string().min(1, { message: "Date is required" }),
-  jobType: z.string().min(1, { message: "Job Type is required" }),
+  jobType: z.enum(["Full-time", "Part-time", "Internship", "Hybrid"]),
 });
 
 const jobTypes = [
   "Full-time",
   "Part-time",
-  "Contract",
   "Internship",
-  "Temporary",
+  "Hybrid",
 ];
 
-interface EnhancedJobEditFormProps {
-  onSubmit: (data: any) => void;
-  initialData?: {
-    title?: string;
-    company?: string;
-    location?: string;
-    description?: string;
-    date?: string;
-    jobType?: string;
-  };
+interface JobData {
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  date: string;
+  jobType: typeof jobTypes[number];
 }
-
-const EnhancedJobEditForm: React.FC<EnhancedJobEditFormProps> = ({
-  onSubmit,
-  initialData = {},
-}) => {
+export default function EditJobPage({ params }: { params: { id: string } }) {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<JobData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: initialData.title || "",
-      company: initialData.company || "",
-      location: initialData.location || "",
-      description: initialData.description || "",
-      date: initialData.date || new Date().toISOString().slice(0, 10), // Default to today's date
-      jobType: initialData.jobType || jobTypes[0], // Default to first job type
+      title: "",
+      company: "",
+      location: "",
+      description: "",
+      date: new Date().toISOString().slice(0, 10),
+      jobType: jobTypes[0],
     },
   });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const { id } = params;
+
+  useEffect(() => {
+    if (!id) {
+      setError("Job ID is missing.");
+      setLoading(false);
+      return;
+    }
+
+    const fetchJob = async () => {
+      try {
+        const response = await axios.get(`/api/jobs/${id}`);
+        const jobData: JobData = response.data;
+
+        reset({
+          title: jobData.title,
+          company: jobData.company,
+          location: jobData.location,
+          description: jobData.description,
+          date: jobData.date.split("T")[0],
+          jobType: jobData.jobType || jobTypes[0],
+        });
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch job details:", error);
+        setError("Failed to load job details. Please try again.");
+        setLoading(false);
+      }
+    };
+
+    fetchJob();
+  }, [id, reset]);
+
+  const onSubmit = async (data: JobData) => {
+    try {
+      await axios.put(`/api/jobs/${id}`, data);
+      router.push("/admin/jobs");
+    } catch (error) {
+      console.error("Failed to update job", error);
+      setError("Failed to update job. Please try again.");
+    }
+  };
+
+  if (loading) {
+    return <p>Loading job details...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-600">{error}</p>;
+  }
 
   return (
     <Card className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -157,6 +202,31 @@ const EnhancedJobEditForm: React.FC<EnhancedJobEditFormProps> = ({
               )}
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Job Type
+            </label>
+            <Controller
+              name="jobType"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  className="w-full border border-gray-300 rounded-md py-3 px-4 focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option value="">Select Job Type</option>
+                  {jobTypes.map((jobType) => (
+                    <option key={jobType} value={jobType}>
+                      {jobType}
+                    </option>
+                  ))}
+                </select>
+              )}
+            />
+            {errors.jobType && (
+              <p className="text-red-600 text-sm">{errors.jobType.message}</p>
+            )}
+          </div>
           <Controller
             name="description"
             control={control}
@@ -178,40 +248,16 @@ const EnhancedJobEditForm: React.FC<EnhancedJobEditFormProps> = ({
               </div>
             )}
           />
-          <Controller
-            name="jobType"
-            control={control}
-            render={({ field }) => (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Job Type
-                </label>
-                <div className="relative">
-                  <Select {...field}>
-                    {jobTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </Select>
-                </div>
-                {errors.jobType && (
-                  <p className="mt-1 text-xs text-red-600">
-                    {errors.jobType.message}
-                  </p>
-                )}
-              </div>
-            )}
-          />
-          <CardFooter className="p-6">
-            <Button type="submit" className="bg-indigo-600 text-white">
-              Save Changes
-            </Button>
-          </CardFooter>
         </form>
       </CardContent>
+      <CardFooter className="p-6">
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          className="bg-indigo-600 text-white"
+        >
+          Save Changes
+        </Button>
+      </CardFooter>
     </Card>
   );
-};
-
-export default EnhancedJobEditForm;
+}
