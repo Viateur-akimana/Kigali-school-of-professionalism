@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
         visibility,
         enrollments,
         price,
+
         createdOn,
       },
     });
