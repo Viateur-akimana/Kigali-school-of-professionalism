@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import BackButton from '../components/BackButton';
+import BackButton from './BackButton';
 
 interface Job {
   id: number;
@@ -35,7 +35,7 @@ interface JobsTableProps {
   title?: string;
 }
 
-const JobsTable = ({ limit, title }: JobsTableProps) => {
+const JobsTable: React.FC<JobsTableProps> = ({ limit, title }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
