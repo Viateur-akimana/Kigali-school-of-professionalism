@@ -7,7 +7,7 @@ export default function AdminDashboard() {
     <div className="admin-dashboard">
       <Dashboard />
       <SiteViewsChart/>
-      <JobsTable/>
+      <JobsTable title='All jobs' limit={15}/>
     </div>
   )
 }
