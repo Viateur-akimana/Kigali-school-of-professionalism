@@ -2,16 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import prisma from '@/lib/db';
 
-
 const schema = z.object({
   title: z.string().min(1, 'Title is required').max(255),
   duration: z.string().min(1, 'Duration is required'),
-  status: z.string().min(1, 'Status is required'),
-  visibility: z.string().min(1, 'Visibility is required'),
+  status: z.enum(['Active', 'Inactive'], { errorMap: () => ({ message: 'Status is required' }) }),
+  visibility: z.enum(['Public', 'Private'], { errorMap: () => ({ message: 'Visibility is required' }) }),
   enrollments: z.number().int().nonnegative(),
   price: z.string().min(1, 'Price is required'),
-  createdOn: z.string().min(1, 'Creation date is required')
+  createdOn: z.string().min(1, 'Creation date is required'),
 });
+
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { title, duration, status, visibility, enrollments, price, createdOn } = validation.data;
+
 
     const newCourse = await prisma.course.create({
       data: {
@@ -42,7 +43,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
 
 export async function GET() {
   try {

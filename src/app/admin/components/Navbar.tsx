@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className="flex justify-between ">
       <div className="flex items-center space-x-3">
         <h1 className="text-2xl  p-4 ml-4 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#4318FF] to-[#00BFA6] drop-shadow-md">
-          Welcome to IT Solution Group
+          Welcome to Kigali School of professionalism
         </h1>
       </div>
 

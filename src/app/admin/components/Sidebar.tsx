@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
       <div>
         <div className="mb-6 flex items-center">
           <h1 className="ml-3 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#4318FF] to-[#00BFA6] drop-shadow-md">
-            IT Solutions Group
+            Kigali School of professionalism
           </h1>
         </div>
 

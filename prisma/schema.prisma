@@ -15,22 +15,33 @@ model View {
   createdAt DateTime @default(now())
 }
 
-model Job{
+model Job {
   id          Int      @id @default(autoincrement())
   title       String   @db.VarChar(255)
   description String   @db.Text
-  company   String   @db.VarChar(50)
-  date   DateTime @default(now())
-  location   String @db.VarChar(50)
-    jobType     String   @db.VarChar(20)
+  company     String   @db.VarChar(50)
+  date        DateTime @default(now())
+  location    String   @db.VarChar(50)
+  jobType     String   @db.VarChar(20)
 }
-model Course{
-   id          Int      @id @default(autoincrement())
-   title String
-  duration String
-  status String
-  visibility String
-  enrollments Int
-  price String
-  createdOn String
+
+enum CourseStatus {
+  Active
+  Inactive
+}
+
+enum CourseVisibility {
+  Public
+  Private
+}
+
+model Course {
+  id          Int              @id @default(autoincrement())
+  title       String           @db.VarChar(255)
+  duration    String           @db.VarChar(100)
+  status      CourseStatus     @default(Active)
+  visibility  CourseVisibility @default(Public)
+  enrollments Int              @default(0)
+  price       String           @db.VarChar(50)
+  createdOn   DateTime         @default(now())
 }

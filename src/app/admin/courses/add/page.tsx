@@ -10,18 +10,21 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-// Define the form schema using Zod
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
   duration: z.string().min(1, { message: "Duration is required" }),
   status: z.enum(["Active", "Inactive"]),
   visibility: z.enum(["Public", "Private"]),
-  enrollments: z.number().int().nonnegative(),
-  price: z.string().min(1, { message: "Price is required" }),
+  enrollments: z
+    .string()
+    .min(1, { message: "Enrollments is required" })
+    .transform((val) => parseInt(val, 10)),
+  price: z
+  .string()
+  .min(1,{message: "Price is required"}),
   createdOn: z.string().min(1, { message: "Creation date is required" }),
 });
 
-// Options for status and visibility
 const statusOptions = ["Active", "Inactive"];
 const visibilityOptions = ["Public", "Private"];
 
@@ -55,10 +58,13 @@ export default function AddCoursePage() {
 
   const router = useRouter();
 
-  // Handle form submission
   const onSubmit = async (data: CourseData) => {
     try {
-      await axios.post(`/api/courses`, data);
+      const updatedData = {
+        ...data,
+        createdOn: new Date(data.createdOn).toISOString(), 
+      };
+      await axios.post(`/api/courses`, updatedData);
       router.push("/admin/courses");
     } catch (error) {
       console.error("Failed to create course", error);
@@ -69,7 +75,7 @@ export default function AddCoursePage() {
   return (
     <Card className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <CardHeader className="bg-indigo-600 text-white p-6">
-        
+
         <h3 className="text-2xl font-semibold">Add New Course</h3>
       </CardHeader>
       <CardContent className="p-6">

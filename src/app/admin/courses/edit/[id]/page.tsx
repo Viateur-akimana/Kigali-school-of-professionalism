@@ -91,7 +91,11 @@ export default function EditCoursePage({ params }: { params: { id: string } }) {
 
   const onSubmit = async (data: CourseData) => {
     try {
-      await axios.put(`/api/courses/${id}`, data);
+      const updatedData = {
+        ...data,
+        createdOn: new Date(data.createdOn).toISOString(), 
+      };
+      await axios.put(`/api/courses/${id}`, updatedData);
       router.push("/admin/courses");
     } catch (error) {
       console.error("Failed to update course", error);
@@ -108,7 +112,7 @@ export default function EditCoursePage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <Card className="w-full my-auto max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <CardHeader className="bg-indigo-600 text-white p-6">
         <h3 className="text-2xl font-semibold">Edit Course</h3>
       </CardHeader>
@@ -228,6 +232,12 @@ export default function EditCoursePage({ params }: { params: { id: string } }) {
                     type="number"
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     placeholder="Enter Enrollments"
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      field.onChange(value ? Number(value) : 0);
+                    }}
+                    value={field.value !== undefined ? field.value : 0}
                   />
                   {errors.enrollments && (
                     <p className="mt-1 text-xs text-red-600">
@@ -237,6 +247,7 @@ export default function EditCoursePage({ params }: { params: { id: string } }) {
                 </div>
               )}
             />
+
             <Controller
               name="price"
               control={control}
