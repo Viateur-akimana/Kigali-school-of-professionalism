@@ -19,6 +19,7 @@ interface RouteParams {
 export async function GET(req: NextRequest, { params }: { params: RouteParams }) {
   try {
     const id = parseInt(params.id);
+    console.log("Received GET request for course ID:", params.id);
 
     if (isNaN(id)) {
       return NextResponse.json({ error: 'Invalid Course ID' }, { status: 400 });
@@ -80,6 +81,9 @@ export async function DELETE(req: NextRequest, { params }: { params: RouteParams
       where: { id },
     });
 
+    if (!deletedCourse) {
+      return NextResponse.json({ error: 'Course not found' }, { status: 404 });
+    }
     return NextResponse.json(deletedCourse);
   } catch (error) {
     console.error(error);
