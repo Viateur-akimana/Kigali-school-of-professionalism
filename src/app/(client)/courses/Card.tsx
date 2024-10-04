@@ -1,5 +1,7 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
+import SignUpModal from './join/page'; // Import modal from the join folder
 
 interface CardProps {
   title: string;
@@ -16,6 +18,8 @@ const Card: React.FC<CardProps> = ({
   createdOn,
   imageUrl,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div
       data-aos="fade-up"
@@ -27,7 +31,6 @@ const Card: React.FC<CardProps> = ({
           src={imageUrl}
           alt={title}
           layout="fill"
-          
         />
       </div>
       <div className="px-6 py-4">
@@ -37,7 +40,6 @@ const Card: React.FC<CardProps> = ({
         <p className="text-sm text-gray-800 dark:text-gray-400 mb-2">
           {duration}
         </p>
-        
         <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">{createdOn}</p>
       </div>
       <div className="px-6 pt-4 pb-6">
@@ -45,12 +47,17 @@ const Card: React.FC<CardProps> = ({
           <span className="text-gray-800 dark:text-gray-200 text-lg font-semibold">
             {price}
           </span>
-        
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
-            Join
-          </button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Join
+        </button>
       </div>
+
+      {/* Modal popup */}
+      {isModalOpen && <SignUpModal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
