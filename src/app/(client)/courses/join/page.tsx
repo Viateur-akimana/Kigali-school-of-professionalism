@@ -1,29 +1,29 @@
-'use client'
+'use client';
+
 import React from 'react';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 
 const SignUpCard: React.FC = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleGoogleSignUp = async () => {
     const result = await signIn('google', { redirect: false, callbackUrl: '/payment' });
     if (result?.ok) {
-      router.push(result.url || '/payment'); 
+      router.push('/payment');
     } else {
       console.error('Google sign-up failed');
     }
   };
-  
+
   const handleFacebookSignUp = async () => {
     const result = await signIn('facebook', { redirect: false, callbackUrl: '/payment' });
     if (result?.ok) {
-      router.push(result.url || '/payment'); 
+      router.push('/payment');
     } else {
       console.error('Facebook sign-up failed');
     }
   };
-  
 
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50 transition-opacity">
