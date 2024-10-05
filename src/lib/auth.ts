@@ -1,8 +1,9 @@
-import { NextAuthOptions } from "next-auth";
-import GoogleProvider from 'next-auth/providers/google';
+// pages/api/auth/[...nextauth].ts
+import NextAuth, { NextAuthOptions } from "next-auth";
+import Google from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import CredentialsProvider from "next-auth/providers/credentials";
-import { User } from "next-auth"; 
+import { User } from "next-auth";
 
 if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
     throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD must be set in environment variables");
@@ -14,6 +15,7 @@ interface CustomUser extends User {
 
 export const authOptions: NextAuthOptions = {
     providers: [
+        // Credentials provider for admin access
         CredentialsProvider({
             name: "Credentials",
             credentials: {
@@ -40,19 +42,18 @@ export const authOptions: NextAuthOptions = {
                 return null;
             },
         }),
-        GoogleProvider({
+        Google({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-          }),
-          FacebookProvider({
+        }),
+        FacebookProvider({
             clientId: process.env.FACEBOOK_CLIENT_ID!,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
-          }),
+        }),
     ],
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-          
                 (token as any).isAdmin = user.isAdmin;
             }
             return token;
@@ -64,10 +65,12 @@ export const authOptions: NextAuthOptions = {
             return session;
         },
     },
-    pages: {
-        signIn: "/auth",
+    pages:{
+        newUser: '/payment',
     },
     session: {
         strategy: "jwt",
     },
 };
+
+export default NextAuth(authOptions);

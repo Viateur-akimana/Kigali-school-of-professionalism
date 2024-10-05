@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import SignUpModal from './join/page'; // Import modal from the join folder
+import SignUpModal from './join/page';
+import { useRouter } from 'next/navigation'
 
 interface CardProps {
   title: string;
@@ -18,7 +19,12 @@ const Card: React.FC<CardProps> = ({
   createdOn,
   imageUrl,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const router = useRouter();
+
+  const handleJoin = () => {
+    router.push("/courses/join")
+  }
 
   return (
     <div
@@ -50,14 +56,11 @@ const Card: React.FC<CardProps> = ({
         </div>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleJoin}
         >
           Join
         </button>
       </div>
-
-      {/* Modal popup */}
-      {isModalOpen && <SignUpModal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
