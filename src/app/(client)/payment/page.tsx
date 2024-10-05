@@ -23,6 +23,7 @@ const PaymentPage: React.FC = () => {
         e.preventDefault();
         // where to handle payment logic
         console.log('Payment method:', selectedMethod);
+        router.push('/courses/study')
     };
 
 
