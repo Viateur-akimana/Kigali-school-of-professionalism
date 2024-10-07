@@ -1,7 +1,6 @@
-'use client'
-import React, { useState } from 'react';
+
+import React from 'react';
 import Image, { StaticImageData } from 'next/image';
-import SignUpModal from './join/page';
 import { useRouter } from 'next/navigation'
 
 interface CardProps {
