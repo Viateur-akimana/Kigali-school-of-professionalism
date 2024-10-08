@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^1.0.6",
     "@hookform/resolvers": "^3.9.0",
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@prisma/client": "^5.19.1",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-checkbox": "^1.1.1",

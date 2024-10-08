@@ -15,33 +15,33 @@ interface CustomUser extends User {
 
 export const authOptions: NextAuthOptions = {
     providers: [
-        // Credentials provider for admin access
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                email: { label: "Email", type: "email" },
-                password: { label: "Password", type: "password" },
-            },
-            async authorize(credentials) {
-                if (!credentials?.email || !credentials?.password) {
-                    return null;
-                }
+        // // Credentials provider for admin access
+        // CredentialsProvider({
+        //     name: "Credentials",
+        //     credentials: {
+        //         email: { label: "Email", type: "email" },
+        //         password: { label: "Password", type: "password" },
+        //     },
+        //     async authorize(credentials) {
+        //         if (!credentials?.email || !credentials?.password) {
+        //             return null;
+        //         }
 
-                if (
-                    credentials.email === process.env.ADMIN_EMAIL &&
-                    credentials.password === process.env.ADMIN_PASSWORD
-                ) {
-                    return {
-                        id: "1",
-                        email: process.env.ADMIN_EMAIL,
-                        name: "Admin User",
-                        isAdmin: true,
-                    } as CustomUser;
-                }
+        //         if (
+        //             credentials.email === process.env.ADMIN_EMAIL &&
+        //             credentials.password === process.env.ADMIN_PASSWORD
+        //         ) {
+        //             return {
+        //                 id: "1",
+        //                 email: process.env.ADMIN_EMAIL,
+        //                 name: "Admin User",
+        //                 isAdmin: true,
+        //             } as CustomUser;
+        //         }
 
-                return null;
-            },
-        }),
+        //         return null;
+        //     },
+        // }),
         Google({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
