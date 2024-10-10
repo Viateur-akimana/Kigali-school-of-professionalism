@@ -1,4 +1,3 @@
-// ContentSection.tsx
 import React from 'react';
 import { ContentSectionProps } from '../../types/courseDevelopment';
 
