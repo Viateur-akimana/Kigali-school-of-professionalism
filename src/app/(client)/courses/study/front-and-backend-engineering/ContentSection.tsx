@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentSectionProps } from '../../types/courseDevelopment';
+import { ContentSectionProps } from '../../../types/courseDevelopment';
 
 const ContentSection: React.FC<ContentSectionProps> = ({ title, content, list, code, explanation }) => (
     <section className="p-6 rounded-lg shadow-md bg-white">

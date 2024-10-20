@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight, ChevronDown, Book, Code, Layout, RefreshCw } from 'lucide-react';
-import { CourseSectionProps } from '../../types/courseDevelopment';
+import { CourseSectionProps } from '../../../types/courseDevelopment';
 
 const iconComponents = {
     Book,

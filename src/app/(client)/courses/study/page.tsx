@@ -1,8 +1,8 @@
 'use client'
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search } from 'lucide-react';
-import CourseSection from './CourseSection';
-import ContentSection from './ContentSection';
+import CourseSection from './front-and-backend-engineering/CourseSection';
+import ContentSection from './front-and-backend-engineering/ContentSection';
 import { CourseSectionType } from '../../types/courseDevelopment';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
