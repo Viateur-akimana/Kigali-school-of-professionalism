@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "prisma generate",
     "prisma:migrate": "dotenv -e .env -- npx prisma migrate dev --name init"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
     "framer-motion": "^11.2.12",
     "lucide-react": "^0.400.0",
     "next": "^14.2.4",

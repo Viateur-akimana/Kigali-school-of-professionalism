@@ -21,9 +21,15 @@ const Card: React.FC<CardProps> = ({
 
   const router = useRouter();
 
+  const formatTitle = (title: string) => 
+    title.toLowerCase().replace(/\s+/g, '-');
+
   const handleJoin = () => {
-    router.push("/courses/join")
-  }
+    router.push(`/courses/join/${formatTitle(title)}`);
+  };
+
+
+
 
   return (
     <div
